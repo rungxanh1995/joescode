@@ -1,0 +1,11 @@
+Start
+Input number
+Input amount_to_print
+Set i = 1
+For (i=1, i <= amount_to_print, i++):
+	If number % 2 == 0:
+	then
+		Output number * i
+	else:
+		Output number * 2 * i
+Stop
