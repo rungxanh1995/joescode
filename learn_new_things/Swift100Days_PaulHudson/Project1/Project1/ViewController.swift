@@ -9,52 +9,57 @@ import UIKit
 
 class ViewController: UITableViewController {
   // A property to store filenames outside of viewDidLoad()
-  // Let's set it an empty [String] array for now
-  // It'd be array of all "nssl" pics for later reference rather than having to re-read the resources directory again & again
-  // It's a variable as it'd changed inside the for loop below
+  // Let's set it as empty String array for now
+  // It'd be an array for all "nssl" pics for later reference rather than having to re-read the resources directory again and again
+  // It's a variable as it'd be changed by the for loop later
   var pictures = [String]()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    
     let fm = FileManager.default
     // This lets us work with the filesystem, in this case looking for files
+    
     let path = Bundle.main.resourcePath!
     // This sets to the resourcePath of this app's bundle
-    // It literally says "Tell me where I can find all images I added to this app"
+    // This literally says "Tell me where I can find all images I added to this app"
     // Force unwrapping here is safe as this app definitely has a resourcePath
+    
     let items = try! fm.contentsOfDirectory(atPath: path)
-    // This sets to the contents of directory at "path"
+    // This sets to the contents of directory at "path" above
     // "items" is an array of strings containing filenames
     
+    // For loop iterates through each item found in the app contents
     for item in items {
-      // This for loop executes once for each item found in the app bundle
-      
-      // Work on filenames that has prefix "nssl" only
+      // Work in filenames that have prefix "nssl" only {
       if item.hasPrefix("nssl") {
-        // Add that filename to "pictures" array
+        // Add that filename to the initial empty array
         pictures.append(item)
       }
     }
-    // Print "nssl" filenames in console window
+    // Print the filenames to debug console
     print(pictures)
   }
   
-  // Set how many rows to appear in tableView
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section : Int) -> Int {
+  // Set how many rows to appear in table view
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // Return length of array
     return pictures.count
   }
   
-  // Specify what each row should look like
+  // Specify how each row should look like
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
     // Link to "Picture" in Main.storyboard
     let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath)
-    // Give text label of the cell the same text as a picture in array "pictures"
-    // textLabel? optional chaining: "execute only if there's an actual text label, otherwise do nothing"
+    
+    // Give text label of the cell the same value as a picture from the array
+    // textLabel? optional chaining: "Execute only if there's an actual text label, otherwise do nothing"
     cell.textLabel?.text = pictures[indexPath.row]
-    // indexPath.row contains the row number asked to load
+    // indexPath.row contains the row number asked to low
+    
+    // Return the cell as a UITableViewCell to method
     return cell
-    // This returns the cell as a UITableViewCell
   }
 }
 
