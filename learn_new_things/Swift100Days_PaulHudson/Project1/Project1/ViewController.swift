@@ -61,6 +61,18 @@ class ViewController: UITableViewController {
     // Return the cell as a UITableViewCell to method
     return cell
   }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // 1: Try loading "Detail" view controller & type casting it to be DetailViewController
+    if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+      // 2: If success -> set selectedImage property of "vc"
+      // "selectedImage" is declared as optional in DetailViewController.swift
+      vc.selectedImage = pictures[indexPath.row]
+      
+      // 3: Now push it onto the navigation controller
+      navigationController?.pushViewController(vc, animated: true)
+    }
+  }
 }
 
 
