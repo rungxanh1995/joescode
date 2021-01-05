@@ -17,6 +17,11 @@ class ViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Title to display at top nav bar
+    title = "Storm Viewer"
+    // Display large title on main screen
+    navigationController?.navigationBar.prefersLargeTitles = true
+    
     let fm = FileManager.default
     // This lets us work with the filesystem, in this case looking for files
     

@@ -15,17 +15,38 @@ class DetailViewController: UIViewController {
   // Create a var to hold name of the image to load (as optional initially)
   var selectedImage: String?
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-      if let imageToLoad = selectedImage {
-        // If success -> place imageToLoad into UIImage
-        // then assign that to "image" property of "imageView" declared above
-        imageView.image = UIImage(named: imageToLoad)
-      }
-    }
+  override func viewDidLoad() {
+      super.viewDidLoad()
     
+    // Title with name of a picture
+    title = selectedImage
+    // Disable large title in detail view screen
+    navigationItem.largeTitleDisplayMode = .never
 
+    if let imageToLoad = selectedImage {
+      // If success -> place imageToLoad into UIImage
+      // then assign that to "image" property of "imageView" declared above
+      imageView.image = UIImage(named: imageToLoad)
+    }
+  }
+    
+  // Hide bars on tap before the picture's view controller about to be shown
+  override func viewWillAppear(_ animated: Bool) {
+    // Inherits the method from UIViewController
+    // Pass "animated" onto it to do its own processing
+    super.viewWillAppear(animated)
+    navigationController?.hidesBarsOnTap = true
+  }
+  
+  // Don't hide bars on tap before the picture's view controller about to go away
+  // Aka not hide bars on tap in the main view controller
+  override func viewWillDisappear(_ animated: Bool) {
+    // Inherits the method from UIViewController
+    // Pass "animated" onto it to do its own processing
+    super.viewWillDisappear(animated)
+    navigationController?.hidesBarsOnTap = false
+  }
+  
     /*
     // MARK: - Navigation
 
