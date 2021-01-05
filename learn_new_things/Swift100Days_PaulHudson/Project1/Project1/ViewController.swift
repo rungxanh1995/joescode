@@ -40,6 +40,8 @@ class ViewController: UITableViewController {
       if item.hasPrefix("nssl") {
         // Add that filename to the initial empty array
         pictures.append(item)
+        // Sort filenames in root view screen
+        pictures.sort()
       }
     }
     // Print the filenames to debug console
@@ -69,13 +71,19 @@ class ViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     // 1: Try loading "Detail" view controller & type casting it to be DetailViewController
-    if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
-      // 2: If success -> set selectedImage property of "vc"
-      // "selectedImage" is declared as optional in DetailViewController.swift
-      vc.selectedImage = pictures[indexPath.row]
+    if let detailVC = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+      // 2: If success -> set property values over in DetailViewController.swift
+      // Set "selectedImage" string value
+      detailVC.selectedImage = pictures[indexPath.row]
+      // Set values to selectedImagePosition & totalNumberOfImages
+      detailVC.selectedImagePosition = indexPath.row + 1
+      // "+1" to show human-readable index number instead of Swift index number approach
+      
+      detailVC.totalNumberOfImages = pictures.count
+      // Equates total count of pictures array
       
       // 3: Now push it onto the navigation controller
-      navigationController?.pushViewController(vc, animated: true)
+      navigationController?.pushViewController(detailVC, animated: true)
     }
   }
 }

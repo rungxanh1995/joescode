@@ -14,12 +14,15 @@ class DetailViewController: UIViewController {
   
   // Create a var to hold name of the image to load (as optional initially)
   var selectedImage: String?
+  // Declare vars to display name as image position of selected image
+  var selectedImagePosition: Int = 0
+  var totalNumberOfImages: Int = 0
   
   override func viewDidLoad() {
       super.viewDidLoad()
     
-    // Title with name of a picture
-    title = selectedImage
+    // Title with position of a selected picture
+    title = "Image \(selectedImagePosition) of \(totalNumberOfImages)"
     // Disable large title in detail view screen
     navigationItem.largeTitleDisplayMode = .never
 
