@@ -33,13 +33,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="h89-S9-IfR" firstAttribute="centerY" secondItem="ViP-Qx-RXi" secondAttribute="centerY" id="0Ez-ir-fdX"/>
-                            <constraint firstItem="h89-S9-IfR" firstAttribute="centerX" secondItem="ViP-Qx-RXi" secondAttribute="centerX" id="3LY-vR-uZk"/>
-                            <constraint firstItem="4oI-ND-NBw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="MVI-KK-YDR"/>
-                            <constraint firstItem="4oI-ND-NBw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="Pf8-y8-1XF"/>
-                            <constraint firstItem="h89-S9-IfR" firstAttribute="top" secondItem="ViP-Qx-RXi" secondAttribute="bottom" constant="30" id="UnE-aT-230"/>
-                            <constraint firstItem="ViP-Qx-RXi" firstAttribute="centerX" secondItem="4oI-ND-NBw" secondAttribute="centerX" id="gMd-hH-Mzd"/>
-                            <constraint firstItem="ViP-Qx-RXi" firstAttribute="top" secondItem="4oI-ND-NBw" secondAttribute="bottom" constant="30" id="uf3-rJ-olW"/>
+                            <constraint firstItem="4oI-ND-NBw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="DDm-be-FFV"/>
+                            <constraint firstItem="4oI-ND-NBw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="DfH-z3-fng"/>
+                            <constraint firstItem="4oI-ND-NBw" firstAttribute="leading" secondItem="ViP-Qx-RXi" secondAttribute="leading" id="Gqi-QE-w14"/>
+                            <constraint firstItem="h89-S9-IfR" firstAttribute="centerX" secondItem="ViP-Qx-RXi" secondAttribute="centerX" id="TVS-v6-Zxa"/>
+                            <constraint firstItem="h89-S9-IfR" firstAttribute="top" secondItem="ViP-Qx-RXi" secondAttribute="bottom" constant="30" id="XsB-jN-X5t"/>
+                            <constraint firstItem="ViP-Qx-RXi" firstAttribute="top" secondItem="4oI-ND-NBw" secondAttribute="bottom" constant="30" id="ZsI-xm-18T"/>
+                            <constraint firstItem="4oI-ND-NBw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bxh-wk-4Om"/>
+                            <constraint firstItem="ViP-Qx-RXi" firstAttribute="centerX" secondItem="4oI-ND-NBw" secondAttribute="centerX" id="jwv-YY-oEn"/>
+                            <constraint firstItem="ViP-Qx-RXi" firstAttribute="leading" secondItem="h89-S9-IfR" secondAttribute="leading" id="sXd-An-vWE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4U0-fX-27b"/>
