@@ -16,6 +16,8 @@ class ViewController: UIViewController {
   var countries = [String]()
   // A var to hold player's current score
   var score = 0
+  // A var to track the correct answer
+  var correctAnswer = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,9 +43,19 @@ class ViewController: UIViewController {
   
   // Method to show 3 random flags in the 3 buttons
   func askQuestion() {
-    button1.setImage(UIImage(named: countries[Int.random(in: 0..<countries.count)]), for: .normal)
-    button2.setImage(UIImage(named: countries[Int.random(in: 0..<countries.count)]), for: .normal)
-    button3.setImage(UIImage(named: countries[Int.random(in: 0..<countries.count)]), for: .normal)
+    // Shuffle the country names array
+    countries.shuffle()
+    
+    // Set image for each button as first 3 items of shuffled array
+    button1.setImage(UIImage(named: countries[0]), for: .normal)
+    button2.setImage(UIImage(named: countries[1]), for: .normal)
+    button3.setImage(UIImage(named: countries[2]), for: .normal)
+    
+    // Randomize the correct answer within the bounds of first 3 items
+    correctAnswer = Int.random(in: 0...2)
+    
+    // Set title of ViewController to current correct answer index in the array
+    title = countries[correctAnswer].uppercased()
   }
 
 
