@@ -42,7 +42,9 @@ class ViewController: UIViewController {
   }
   
   // Method to show 3 random flags in the 3 buttons
-  func askQuestion() {
+  // Take in a nil UIAlertAction as initial value
+  // But later the param value is updated in @IBAction's buttonTapped method below
+  func askQuestion(action: UIAlertAction! = nil) {
     // Shuffle the country names array
     countries.shuffle()
     
@@ -58,6 +60,25 @@ class ViewController: UIViewController {
     title = countries[correctAnswer].uppercased()
   }
 
-
+  @IBAction func buttonTapped(_ sender: UIButton) {
+    // Declare a separate title property for button tapped action
+    var title: String
+    
+    // Update value of title & score
+    if sender.tag == correctAnswer {
+      title = "Correct"
+      score += 1
+    } else {
+      title = "Wrong"
+      score -= 1
+    }
+    
+    // Create a UIAlertController object constant as an alert
+    let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+    // Add alert option to continue (call askQuestion) when the alert is show
+    ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+    // Present the alert on screen when a button is tapped
+    self.present(ac, animated: true)
+  }
 }
 
