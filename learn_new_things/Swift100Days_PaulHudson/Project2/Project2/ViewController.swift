@@ -18,6 +18,8 @@ class ViewController: UIViewController {
   var score = 0
   // A var to track the correct answer
   var correctAnswer = 0
+  // A var to track total guess count
+  var guessCount = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -56,29 +58,46 @@ class ViewController: UIViewController {
     // Randomize the correct answer within the bounds of first 3 items
     correctAnswer = Int.random(in: 0...2)
     
-    // Set title of ViewController to current correct answer index in the array
-    title = countries[correctAnswer].uppercased()
+    // Set title of ViewController to current correct answer index in the array & current score
+    title = "FLAG OF \(countries[correctAnswer].uppercased())?\t\tYOUR SCORE: \(score)"
   }
 
   @IBAction func buttonTapped(_ sender: UIButton) {
     // Declare a separate title property for button tapped action
     var title: String
     
+    // Increment guess count whenever a button is tapped
+    guessCount += 1
+    
     // Update value of title & score
     if sender.tag == correctAnswer {
       title = "Correct"
       score += 1
     } else {
-      title = "Wrong"
+      title = "Wrong. You chose \(countries[sender.tag].uppercased())"
       score -= 1
     }
     
-    // Create a UIAlertController object constant as an alert
-    let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-    // Add alert option to continue (call askQuestion) when the alert is show
-    ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-    // Present the alert on screen when a button is tapped
-    self.present(ac, animated: true)
+    // Let user continue game with an alert option while total guess below 10
+    if guessCount < 10 {
+      // Create a UIAlertController object constant as an alert
+      let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+      // Add alert option to continue (call askQuestion) when the alert is show
+      ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+      // Present the alert on screen when a button is tapped
+      self.present(ac, animated: true)
+    }
+    // Otherwise when total guess passes 10
+    else {
+      // Create a UIAlertController object constant as a final alert
+      let acFinal = UIAlertController(
+        title: title,
+        message: "You were fantastic today!\nYou scored \(score) out of \(guessCount).\nSee you tomorrow!",
+        preferredStyle: .alert
+      )
+      // Present the final alert on screen
+      self.present(acFinal, animated: true)
+    }
   }
 }
 
