@@ -21,6 +21,8 @@ class ViewController: UITableViewController {
     title = "Storm Viewer"
     // Display large title on main screen
     navigationController?.navigationBar.prefersLargeTitles = true
+    // Add a sharing button to main viewer to allow user recommending the app
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
     
     
     let fm = FileManager.default
@@ -86,6 +88,13 @@ class ViewController: UITableViewController {
       // 3: Now push it onto the navigation controller
       navigationController?.pushViewController(detailVC, animated: true)
     }
+  }
+  
+  // Method to be called upon tapped share button in main view controller
+  @objc func shareTapped() {
+    let activityVC = UIActivityViewController(activityItems: ["Check out this awesome app to let you contemplate mighty storms in a safe way!"], applicationActivities: [])
+    activityVC.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+    self.present(activityVC, animated: true)
   }
 }
 
