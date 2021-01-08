@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     
+    // Add a sharing button to right side of navigation bar
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+    
     // Fill up countries array with asset flags
     countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
     
@@ -92,12 +95,21 @@ class ViewController: UIViewController {
       // Create a UIAlertController object constant as a final alert
       let acFinal = UIAlertController(
         title: title,
-        message: "You were fantastic today!\nYou scored \(score) out of \(guessCount).\nSee you tomorrow!",
+        message: "You were fantastic today!\nYou scored \(score) out of \(guessCount).\nOne more?",
         preferredStyle: .alert
       )
+      // Add alert option to continue playing game
+      acFinal.addAction(UIAlertAction(title: "You bet!", style: .default, handler: askQuestion))
       // Present the final alert on screen
       self.present(acFinal, animated: true)
     }
+  }
+  
+  // Method to share user score when sharing button is tapped
+  @objc func shareTapped() {
+    let activityVC = UIActivityViewController(activityItems: ["Check it out, I got \(score)/\(guessCount) in this awesome flag game!"], applicationActivities: [])
+    activityVC.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+    present(activityVC, animated: true)
   }
 }
 
