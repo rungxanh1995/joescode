@@ -58,6 +58,7 @@ class DetailViewController: UIViewController {
   // Method to share an image upon sharing button tap
   // Call underlying Objective-C OS via @objc to pass this method to #selector above
   @objc func shareTapped() {
+    // Get the current image
     // Image view may/may not have an image, hence being optional
     guard let image = imageView.image?.jpegData(compressionQuality: 1.0) else {
       print("No image found")
@@ -65,9 +66,9 @@ class DetailViewController: UIViewController {
     }
     
     // Create a UIActivityViewController object
-    // First, pass in an array of items to share to activityItems
+    // First, pass in an array of the items (including the selected image & its name) to share to activityItems
     // Second, pass in an array of custom app services (empty for this app) to applicationActivities
-    let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+    let vc = UIActivityViewController(activityItems: [image, selectedImage!], applicationActivities: [])
     // [image] above is the JPEG data that describes the user's selected image
     // Tell iOS where the activity view controller should be anchored
     vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
