@@ -16,6 +16,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
   var webView: WKWebView!
   // Create the progress view
   var progressView: UIProgressView!
+  // Create an array of allowed websites
+  var websites = ["apple.com", "hackingwithswift.com"]
   
   // Alter built-in loadView()
   override func loadView() {
@@ -32,7 +34,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     view = webView
     
     // This is the initial website displayed by this app
-    let url = URL(string: "https://www.hackingwithswift.com")!
+    let url = URL(string: "https://" + websites[0])!
     // 1. This assigns a URL object out of String to url
     webView.load(URLRequest(url: url))
     // 2. This create a URLRequest object from the url, then feeds webView to load
@@ -79,8 +81,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
   // These options are pre-set websites for users to browse
   @objc func openTapped() {
     let ac = UIAlertController(title: "Open page...", message: nil, preferredStyle: .actionSheet)
-    ac.addAction(UIAlertAction(title: "apple.com", style: .default, handler: openPage))
-    ac.addAction(UIAlertAction(title: "hackingwithswift.com", style: .default, handler: openPage))
+    for website in websites {
+      ac.addAction(UIAlertAction(title: website, style: .default, handler: openPage))
+    }
     ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     ac.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
     present(ac, animated: true)
@@ -104,9 +107,33 @@ class ViewController: UIViewController, WKNavigationDelegate {
     if keyPath == "estimatedProgress" {
       // Convert the estimatedProgress value of webView to a float & assign to progressView.progress
       progressView.progress = Float(webView.estimatedProgress)
+      print(webView.estimatedProgress)
     }
   }
   
+  // Allow navigation to happen or not -> check the navigation URL to see whether we like it
+  func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    // Set constant url equal to the URL of the navigation
+    let url = navigationAction.request.url
+    
+    // See if the URL has a host (website domain)
+    // Hence the optional url
+    if let host = url?.host {
+      // It does have a host, so proceed to check if the website is in the list
+      for website in websites {
+        if host.contains(website) {
+          // Call decisionHandler with a positive response: allow loading
+          decisionHandler(.allow)
+          // Then exit this method
+          return
+        }
+      }
+    }
+    
+    // Otherwise if there's no host set, or website not in the list
+    // Call decisionHandler to cancel loading
+    decisionHandler(.cancel)
+  }
   // End of Class
 }
 
