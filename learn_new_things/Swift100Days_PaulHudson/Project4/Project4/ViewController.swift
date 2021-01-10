@@ -14,6 +14,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
   
   // Create the web view
   var webView: WKWebView!
+  // Create the progress view
+  var progressView: UIProgressView!
+  
   // Alter built-in loadView()
   override func loadView() {
     // 1. Assign an empty WKWebView instance to webView
@@ -35,6 +38,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // 2. This create a URLRequest object from the url, then feeds webView to load
     webView.allowsBackForwardNavigationGestures = true
     // 3. This enables backward/forward edge-swiping gesture
+    
+    // End of loadView()
   }
   
   override func viewDidLoad() {
@@ -44,6 +49,30 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // Add a navigation button to hold list of websites (as alert options) to browse
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
 
+    // Declare value as a UIProgressView instance to progressView
+    progressView = UIProgressView(progressViewStyle: .default)
+    // Set its layout size to fit its contents fully
+    progressView.sizeToFit()
+    // Create a progress button by passing the UIProgressView instance in there to param customView
+    let progressButton = UIBarButtonItem(customView: progressView)
+    // Also create a flexible space
+    let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    // And a refresh button
+    let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+    
+    // Create an array containing the defined buttons -> sets to toolbarItems
+    toolbarItems = [progressButton, spacer, refresh]
+    navigationController?.isToolbarHidden = false
+    
+    // Add a KVO observer of the estimatedProgress property on the web view
+    webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+    // The 4 params meaning are:
+    // 1. _ observer: who the observer is (in this case we are the observer)
+    // 2. forKeyPath: what to observe (the estimatedProgress property of WKWebView inside a key path)
+    // 3. options: which value we want (the value that was just set, hence the new one)
+    // 4. context: arbitrary data of the value provided when the observer was registered to receive KVO notifications
+    
+    // End of viewDidLoad()
     }
   
   // Obj-C openTapped() method to display UIAlertController options
@@ -68,5 +97,16 @@ class ViewController: UIViewController, WKNavigationDelegate {
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     title = webView.title
   }
+  
+  // Edit observeValue() method to tell when the estimatedProgress value has changed
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    // When the keyPath equates string-converted value of estimatedProgress
+    if keyPath == "estimatedProgress" {
+      // Convert the estimatedProgress value of webView to a float & assign to progressView.progress
+      progressView.progress = Float(webView.estimatedProgress)
+    }
+  }
+  
+  // End of Class
 }
 
