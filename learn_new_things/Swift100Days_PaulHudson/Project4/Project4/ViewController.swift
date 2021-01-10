@@ -60,10 +60,19 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // Also create a flexible space
     let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     // And a refresh button
-    let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+    let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+    // Add back button
+    let backSymbol = UIImage(systemName: "chevron.left")
+    let backButton = UIBarButtonItem(image: backSymbol, style: .plain, target: webView, action: #selector(webView.goBack))
+    // Add forward button
+    let forwardSymbol = UIImage(systemName: "chevron.right")
+    let forwardButton = UIBarButtonItem(image: forwardSymbol, style: .plain, target: webView, action: #selector(webView.goForward))
+    // Add the website list
+    let listSymbol = UIImage(systemName: "list.bullet")
+    let listButton = UIBarButtonItem(image: listSymbol, style: .plain, target: self, action: #selector(openTapped))
     
     // Create an array containing the defined buttons -> sets to toolbarItems
-    toolbarItems = [progressButton, spacer, refresh]
+    toolbarItems = [backButton, spacer, forwardButton, spacer, progressButton, spacer, listButton, spacer, refreshButton]
     navigationController?.isToolbarHidden = false
     
     // Add a KVO observer of the estimatedProgress property on the web view
