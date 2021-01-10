@@ -103,7 +103,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
   
   // Edit observeValue() method to tell when the estimatedProgress value has changed
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    // When the keyPath equates string-converted value of estimatedProgress
+    // When the keyPath equates value of the keypath of key estimatedProgress
     if keyPath == "estimatedProgress" {
       // Convert the estimatedProgress value of webView to a float & assign to progressView.progress
       progressView.progress = Float(webView.estimatedProgress)
