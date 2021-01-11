@@ -18,6 +18,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var progressView: UIProgressView!
     // Create an array of allowed websites
     var websites = ["apple.com", "hackingwithswift.com"]
+    // Declare a var to hold the current website to be shared
+    var websiteToShare: URL?
     
     // Alter built-in loadView()
     override func loadView() {
@@ -48,8 +50,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // Add a navigation button to hold list of websites (as alert options) to browse
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
+        // Add a navigation button to share current website
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: #selector(shareTapped))
 
         // Declare value as a UIProgressView instance to progressView
         progressView = UIProgressView(progressViewStyle: .default)
@@ -133,6 +135,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 if host.contains(website) {
                     // Call decisionHandler with a positive response: allow loading
                     decisionHandler(.allow)
+                    // Set the current host to website to share
+                    websiteToShare = url
                     // Then exit this method
                     return
                 }
@@ -152,6 +156,14 @@ class ViewController: UIViewController, WKNavigationDelegate {
         ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
+    
+    // Obj-C shareTapped() method to share current website
+    @objc func shareTapped() {
+        let ac = UIActivityViewController(activityItems: [websiteToShare!], applicationActivities: [])
+        ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(ac, animated: true)
+    }
+    
     // End of Class
 }
 
