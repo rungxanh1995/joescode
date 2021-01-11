@@ -137,11 +137,20 @@ class ViewController: UIViewController, WKNavigationDelegate {
           return
         }
       }
+      // If user somehow access a URL that isn't allowed, then show a blocking alert
+      showBlockAlert()
     }
     
     // Otherwise if there's no host set, or website not in the list
     // Call decisionHandler to cancel loading
     decisionHandler(.cancel)
+  }
+  
+  // Method to show a blocked website alert
+  func showBlockAlert() {
+    let ac = UIAlertController(title: "Blocked website", message: "Unfortunately, this website is not in the website catalog", preferredStyle: .alert)
+    ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+    present(ac, animated: true)
   }
   // End of Class
 }
