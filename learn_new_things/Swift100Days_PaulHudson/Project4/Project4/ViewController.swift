@@ -17,7 +17,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // Create the progress view
     var progressView: UIProgressView!
     // Create an array of allowed websites
-    var websites = ["apple.com", "hackingwithswift.com"]
+    var websites = websiteInstance.globalWebsitesList
     // Declare a var to hold the current website to be shared
     var websiteToShare: URL?
     
@@ -165,7 +165,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     // Method to show a blocked website alert
     func showBlockAlert() {
-        let ac = UIAlertController(title: "Blocked website", message: "Unfortunately, this website is not in the website catalog", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Blocked website", message: "The browser is attempting to navigate to a website not in the website catalog", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
@@ -178,41 +178,4 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     // End of Class
-}
-
-
-// Create an initial screen with a list of website for users to choose
-class InitialViewController: UITableViewController {
-    var websites = ["apple.com", "hackingwithswift.com"]
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Title of the initial screen
-        title = "Easy Browser"
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    // Set what and how to display each table cell
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteCell", for: indexPath)
-        cell.textLabel?.text = websites[indexPath.row]
-        return cell
-    }
-    
-    // Set number of rows in initial screen
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return websites.count
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Instantiate ViewController by typecasting as ViewController
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "WebsiteView") as? ViewController {
-            // Set selectedWebsite value
-            vc.selectedWebsite = websites[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    // End of class
 }
