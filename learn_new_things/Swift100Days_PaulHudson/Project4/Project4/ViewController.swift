@@ -13,13 +13,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // and conforms to WKNavigationDelegate protocol
     
     // Create the web view
-    var webView: WKWebView!
+//    var webView: WKWebView!
     // Create the progress view
     var progressView: UIProgressView!
     // Create an array of allowed websites
     var websites = ["apple.com", "hackingwithswift.com"]
     // Declare a var to hold the current website to be shared
     var websiteToShare: URL?
+    
+    // Integrate webView screen from Storyboard
+    @IBOutlet var webView: WKWebView!
+    
+    var selectedWebsite: String?
     
     // Alter built-in loadView()
     override func loadView() {
@@ -35,13 +40,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
         // 3. Make the current view of loadView() that webView
         view = webView
         
-        // This is the initial website displayed by this app
-        let url = URL(string: "https://" + websites[0])!
-        // 1. This assigns a URL object out of String to url
-        webView.load(URLRequest(url: url))
-        // 2. This create a URLRequest object from the url, then feeds webView to load
-        webView.allowsBackForwardNavigationGestures = true
-        // 3. This enables backward/forward edge-swiping gesture
+//        // This is the initial website displayed by this app
+//        let url = URL(string: "https://" + websites[0])!
+//        // 1. This assigns a URL object out of String to url
+//        webView.load(URLRequest(url: url))
+//        // 2. This create a URLRequest object from the url, then feeds webView to load
+//        webView.allowsBackForwardNavigationGestures = true
+//        // 3. This enables backward/forward edge-swiping gesture
         
         // End of loadView()
     }
@@ -49,6 +54,14 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        if let websiteToLoad = selectedWebsite {
+            let url = URL(string: "https://" + websiteToLoad)!
+            webView.load(URLRequest(url: url))
+            webView.allowsBackForwardNavigationGestures = true
+        }
+        
+        navigationItem.largeTitleDisplayMode = .never
         
         // Add a navigation button to share current website
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: #selector(shareTapped))
@@ -167,3 +180,39 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // End of Class
 }
 
+
+// Create an initial screen with a list of website for users to choose
+class InitialViewController: UITableViewController {
+    var websites = ["apple.com", "hackingwithswift.com"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Title of the initial screen
+        title = "Easy Browser"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    // Set what and how to display each table cell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WebsiteCell", for: indexPath)
+        cell.textLabel?.text = websites[indexPath.row]
+        return cell
+    }
+    
+    // Set number of rows in initial screen
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return websites.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Instantiate ViewController by typecasting as ViewController
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "WebsiteView") as? ViewController {
+            // Set selectedWebsite value
+            vc.selectedWebsite = websites[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    // End of class
+}
