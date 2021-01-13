@@ -37,6 +37,7 @@ class InitialViewController: UITableViewController {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "WebsiteView") as? ViewController {
             // Set selectedWebsite value
             vc.selectedWebsite = websites[indexPath.row]
+            // Then push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
     }
