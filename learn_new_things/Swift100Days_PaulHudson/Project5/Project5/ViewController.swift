@@ -17,6 +17,9 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // Add an "add" button where once tapped the player can input their anagram answer
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+        
         // Find URL path to "start.txt" file in the filesystem
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // Create a string from all text contents of the input file
@@ -59,6 +62,32 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
         cell.textLabel?.text = usedWords[indexPath.row]
         return cell
+    }
+    
+    // Method to allow user input of the word they guess
+    @objc func promptForAnswer() {
+        let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
+        // Add a textbox for user to input the answer
+        // Also means adding a UITextField instance
+        ac.addTextField()
+        
+        // Define submitAction as a UIAlertAction with a trailing closure syntax for its param "handler"
+        // code for "handler" is between { }
+        // also using weak capture list for the current view controller as "self" and the "ac" above
+        // as the code will use "self" and "ac" & Swift would default to strong reference cycle
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
+            guard let answer = ac?.textFields?[0].text else { return }
+            // This closure can only call submit() if it captures the view controller
+            // and "self" was also declared as weak referencing, hence "self?"
+            self?.submit(answer)
+        }
+        // Add submitAction to this UIAlertController "ac"
+        ac.addAction(submitAction)
+        self.present(ac, animated: true)
+    }
+    
+    func submit(_ answer: String) {
+        
     }
 }
 
