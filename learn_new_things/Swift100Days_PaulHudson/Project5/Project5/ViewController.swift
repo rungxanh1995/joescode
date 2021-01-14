@@ -13,6 +13,7 @@ class ViewController: UITableViewController {
     // 2nd array to hold all words the player has used in this game
     var usedWords = [String]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,8 +38,11 @@ class ViewController: UITableViewController {
         
         // Start the game
         startGame()
+        
+        // End of viewDidLoad()
     }
 
+    
     // Main game method
     func startGame() {
         // Show title as 1 random word in the 1st array
@@ -50,7 +54,10 @@ class ViewController: UITableViewController {
         // Call table view's reloadData() to force call numberOfRowsInSection again
         // Also it calls cellForRowAt repeatedly -> all to check if data loaded correctly
         tableView.reloadData()
+        
+        // End of startGame
     }
+    
     
     // Foundation methods to handle table view data
     // 1. numberOfRowsInSection
@@ -63,6 +70,8 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = usedWords[indexPath.row]
         return cell
     }
+    // End of altering tableView methods
+    
     
     // Method to allow user input of the word they guess
     @objc func promptForAnswer() {
@@ -85,6 +94,8 @@ class ViewController: UITableViewController {
         ac.addAction(submitAction)
         self.present(ac, animated: true)
     }
+    // End of promptForAnswer method
+    
     
     // Methods to check the answer
     // 1. Check if the word can be made from given letters
@@ -125,6 +136,8 @@ class ViewController: UITableViewController {
         // d) lastly, returns true/false dependent on whether misspelledRange.location equates NSNotFound
         return misspelledRange.location == NSNotFound
     }
+    // End of methods to check for valid answer
+    
     
     // Method to submit player answer from the alert
     func submit(_ answer: String) {
@@ -144,5 +157,8 @@ class ViewController: UITableViewController {
             }
         }
     }
+    // End of submit method
+    
+    // End of class
 }
 
