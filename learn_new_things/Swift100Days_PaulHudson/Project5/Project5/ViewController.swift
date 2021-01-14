@@ -142,6 +142,10 @@ class ViewController: UITableViewController {
     // Method to submit player answer from the alert
     func submit(_ answer: String) {
         let lowerAnswer = answer.lowercased()
+        
+        let errorTitle: String
+        let errorMessage: String
+        
         // If the lowercase answer passes these 3 conditions
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
@@ -153,9 +157,33 @@ class ViewController: UITableViewController {
                     // Insert a new row into the table view w/ animation, so players can track visually
                     let indexPath = IndexPath(row: 0, section: 0) // this defines a specific indexPath of array usedWords
                     tableView.insertRows(at: [indexPath], with: .automatic) // this creates the animation
+                    
+                    // Force Swift to exit the method once the table is updated
+                    return
+                }
+                // but if not real
+                else {
+                    errorTitle = "Word not recognized"
+                    errorMessage = "You can't just make them up, you know!"
                 }
             }
+            // and if already used
+            else {
+                errorTitle = "Word used already"
+                errorMessage = "Be more original!"
+            }
         }
+        // lastly, if not made from letters of the chosen word
+        else {
+            guard let title = title?.lowercased() else { return }
+            errorTitle = "Word not possible"
+            errorMessage = "You can't spell that word from \(title) though!"
+        }
+        
+        // An alert for invalid answer
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
     }
     // End of submit method
     
