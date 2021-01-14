@@ -75,7 +75,7 @@ class ViewController: UITableViewController {
     
     // Method to allow user input of the word they guess
     @objc func promptForAnswer() {
-        let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Your answer", message: "Enter a word with letters from \(title!)", preferredStyle: .alert)
         // Add a textbox for user to input the answer
         // Also means adding a UITextField instance
         ac.addTextField()
@@ -92,6 +92,8 @@ class ViewController: UITableViewController {
         }
         // Add submitAction to this UIAlertController "ac"
         ac.addAction(submitAction)
+        // Add Dismiss button to "ac"
+        ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         self.present(ac, animated: true)
     }
     // End of promptForAnswer method
@@ -163,26 +165,26 @@ class ViewController: UITableViewController {
                 }
                 // but if not real
                 else {
-                    errorTitle = "Word not recognized"
-                    errorMessage = "You can't just make them up, you know!"
+                    errorTitle = "You word inventor you"
+                    errorMessage = "\(answer) is not in any English dictionaries yet you know!"
                 }
             }
             // and if already used
             else {
                 errorTitle = "Word used already"
-                errorMessage = "Be more original!"
+                errorMessage = "Isn't it funny to repeat yourself?"
             }
         }
         // lastly, if not made from letters of the chosen word
         else {
             guard let title = title?.lowercased() else { return }
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from \(title) though!"
+            errorTitle = "Impossibru!"
+            errorMessage = "You know for damn sure \(answer) isn't created from \(title)!"
         }
         
         // An alert for invalid answer
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        ac.addAction(UIAlertAction(title: "Try another", style: .default, handler: nil))
         present(ac, animated: true, completion: nil)
     }
     // End of submit method
