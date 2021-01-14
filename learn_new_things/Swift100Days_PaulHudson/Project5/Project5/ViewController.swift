@@ -86,8 +86,42 @@ class ViewController: UITableViewController {
         self.present(ac, animated: true)
     }
     
+    // Methods to check the answer
+    // 1. Check if the word can be made from given letters
+    func isPossible(word: String) -> Bool {
+        // Logic here
+        return true
+    }
+    
+    // 2. Check if the word is used already
+    func isOriginal(word: String) -> Bool {
+        // Logic here
+        return true
+    }
+    
+    // 3. Check if the word is valid English
+    func isReal(word: String) -> Bool {
+        // Logic here
+        return true
+    }
+    
+    // Method to submit player answer from the alert
     func submit(_ answer: String) {
-        
+        let lowerAnswer = answer.lowercased()
+        // If the lowercase answer passes these 3 conditions
+        if isPossible(word: lowerAnswer) {
+            if isOriginal(word: lowerAnswer) {
+                if isReal(word: lowerAnswer) {
+                    // Then add this answer to the start of usedWords array
+                    // so the newest word appears at the top of the table view
+                    usedWords.insert(lowerAnswer, at: 0)
+                    
+                    // Insert a new row into the table view w/ animation, so players can track visually
+                    let indexPath = IndexPath(row: 0, section: 0) // this defines a specific indexPath of array usedWords
+                    tableView.insertRows(at: [indexPath], with: .automatic) // this creates the animation
+                }
+            }
+        }
     }
 }
 
