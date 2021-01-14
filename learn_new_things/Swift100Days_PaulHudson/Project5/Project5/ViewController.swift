@@ -89,20 +89,41 @@ class ViewController: UITableViewController {
     // Methods to check the answer
     // 1. Check if the word can be made from given letters
     func isPossible(word: String) -> Bool {
-        // Logic here
+        // a) Create a temporary word from lowercased title aka the word being randomly selected
+        guard var tempWord = title?.lowercased() else { return false }
+        // b) Loop through every letter in the player's answer
+        for letter in word {
+            // ... if that letter exists at a specific position
+            // ... then shrink the temporary word by that letter at that very position & continue the loop
+            if let position = tempWord.firstIndex(of: letter) {
+                tempWord.remove(at: position)
+            } else {
+                // ... else no need to check, return false for the entire answer
+                return false
+            }
+        }
+        // c) Lastly, return true only when all the characters passed the check from the for loop
         return true
     }
     
     // 2. Check if the word is used already
     func isOriginal(word: String) -> Bool {
-        // Logic here
-        return true
+        // ... by checking if the usedWords array contains the answer being submitted
+        return !usedWords.contains(word)
     }
     
     // 3. Check if the word is valid English
     func isReal(word: String) -> Bool {
-        // Logic here
-        return true
+        // a) by adopting native UITextChecker, which is an iOS class to spot spelling errors
+        // but ALERT!: UITextChecker predates Swift. It's written in Obj-C, hence slightly different syntax
+        let checker = UITextChecker()
+        // b) then creating a range to hold character count of the word
+        let range = NSRange(location: 0, length: word.utf16.count)
+        // c) next, using rangeOfMisselledWord(in:) method of UITextChecker to scan the word for the whole range
+        // rangeOfMisselledWord(in:) is in fact yet another NSRange structure to tell where the misspelling was found
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        // d) lastly, returns true/false dependent on whether misspelledRange.location equates NSNotFound
+        return misspelledRange.location == NSNotFound
     }
     
     // Method to submit player answer from the alert
