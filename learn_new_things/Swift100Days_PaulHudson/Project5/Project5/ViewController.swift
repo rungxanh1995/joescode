@@ -22,7 +22,8 @@ class ViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
         // Add a button to start the game again
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startGame))
+        let leftBarButton = UIImage(systemName: "arrow.triangle.2.circlepath")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: leftBarButton, style: .plain, target: self, action: #selector(startGame))
         
         // Find URL path to "start.txt" file in the filesystem
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
