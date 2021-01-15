@@ -159,9 +159,6 @@ class ViewController: UITableViewController {
     func submit(_ answer: String) {
         let lowerAnswer = answer.lowercased()
         
-        let errorTitle: String
-        let errorMessage: String
-        
         // If the lowercase answer passes these 3 conditions
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
@@ -178,30 +175,43 @@ class ViewController: UITableViewController {
                     return
                 }
                 // but if not real
-                else {
-                    errorTitle = "You word inventor you"
-                    errorMessage = "Don't make stuff up you know!"
-                }
+                else { showErrorMessage(answer: lowerAnswer) }
             }
-            // and if already used
-            else {
-                errorTitle = "Word used already"
-                errorMessage = "Isn't it funny to repeat yourself? Be original!"
-            }
+            // if not original
+            else { showErrorMessage(answer: lowerAnswer) }
         }
-        // lastly, if not made from letters of the chosen word
-        else {
+        // if not possible
+        else { showErrorMessage(answer: lowerAnswer) }
+    }
+    // End of submit method
+    
+    
+    // Method to show error dependent on 3 conditionals
+    func showErrorMessage(answer: String) {
+        var errorTitle: String?
+        var errorMessage: String?
+        
+        // Pass in the answer (already lowercased from the calls right above) to "word" param
+        if !isPossible(word: answer) {
             guard let title = title?.lowercased() else { return }
             errorTitle = "Impossibru!"
             errorMessage = "You know for damn sure \(answer) isn't created from \(title)!"
         }
-        
-        // An alert for invalid answer
+        if !isOriginal(word: answer) {
+            errorTitle = "Word used already"
+            errorMessage = "Isn't it funny to repeat yourself? Be original!"
+        }
+        if !isReal(word: answer) {
+            errorTitle = "You word inventor you"
+            errorMessage = "Don't make stuff up you know!"
+        }
+        // Present the alert
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Try another", style: .default, handler: nil))
         present(ac, animated: true, completion: nil)
+        
+        // End of error message method
     }
-    // End of submit method
     
     // End of class
 }
