@@ -18,6 +18,9 @@
                         <subviews>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViP-Qx-RXi">
                                 <rect key="frame" x="107" y="230" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ViP-Qx-RXi" secondAttribute="height" multiplier="2:1" id="f3C-Zd-4jl"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xwS-Wh-JQj"/>
@@ -25,6 +28,9 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h89-S9-IfR">
                                 <rect key="frame" x="107" y="360" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="h89-S9-IfR" secondAttribute="height" multiplier="2:1" id="2jW-yO-evh"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wb5-Mh-pkL"/>
@@ -33,6 +39,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oI-ND-NBw">
                                 <rect key="frame" x="107" y="100" width="200" height="100"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4oI-ND-NBw" secondAttribute="height" multiplier="2:1" id="mJ3-cu-RhR"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0pP-hN-Dux"/>
@@ -42,11 +51,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ViP-Qx-RXi" firstAttribute="height" secondItem="4oI-ND-NBw" secondAttribute="height" id="4Ze-WM-a6u"/>
                             <constraint firstItem="4oI-ND-NBw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="DDm-be-FFV"/>
                             <constraint firstItem="4oI-ND-NBw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="DfH-z3-fng"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="h89-S9-IfR" secondAttribute="bottom" constant="20" id="EKq-8e-Jsy"/>
                             <constraint firstItem="4oI-ND-NBw" firstAttribute="leading" secondItem="ViP-Qx-RXi" secondAttribute="leading" id="Gqi-QE-w14"/>
                             <constraint firstItem="h89-S9-IfR" firstAttribute="centerX" secondItem="ViP-Qx-RXi" secondAttribute="centerX" id="TVS-v6-Zxa"/>
                             <constraint firstItem="h89-S9-IfR" firstAttribute="top" secondItem="ViP-Qx-RXi" secondAttribute="bottom" constant="30" id="XsB-jN-X5t"/>
+                            <constraint firstItem="h89-S9-IfR" firstAttribute="height" secondItem="ViP-Qx-RXi" secondAttribute="height" id="Ydv-HY-hLh"/>
                             <constraint firstItem="ViP-Qx-RXi" firstAttribute="top" secondItem="4oI-ND-NBw" secondAttribute="bottom" constant="30" id="ZsI-xm-18T"/>
                             <constraint firstItem="4oI-ND-NBw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bxh-wk-4Om"/>
                             <constraint firstItem="ViP-Qx-RXi" firstAttribute="centerX" secondItem="4oI-ND-NBw" secondAttribute="centerX" id="jwv-YY-oEn"/>
