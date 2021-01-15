@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     correctAnswer = Int.random(in: 0...2)
     
     // Set title of ViewController to current correct answer index in the array & current score
-    title = "FLAG OF \(countries[correctAnswer].uppercased())?\t\tYOUR SCORE: \(score)"
+    title = "\(countries[correctAnswer].uppercased()) FLAG?\t\tScore: \(score)"
   }
 
   @IBAction func buttonTapped(_ sender: UIButton) {
