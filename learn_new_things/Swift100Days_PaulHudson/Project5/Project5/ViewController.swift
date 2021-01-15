@@ -21,6 +21,9 @@ class ViewController: UITableViewController {
         // Add an "add" button where once tapped the player can input their anagram answer
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
+        // Add a button to start the game again
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startGame))
+        
         // Find URL path to "start.txt" file in the filesystem
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // Create a string from all text contents of the input file
@@ -44,7 +47,7 @@ class ViewController: UITableViewController {
 
     
     // Main game method
-    func startGame() {
+    @objc func startGame() {
         // Show title as 1 random word in the 1st array
         // Also the word the player has to find
         title = allWords.randomElement()
