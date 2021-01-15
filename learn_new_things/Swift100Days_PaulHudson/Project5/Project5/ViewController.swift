@@ -124,22 +124,33 @@ class ViewController: UITableViewController {
     
     // 2. Check if the word is used already
     func isOriginal(word: String) -> Bool {
+        // ... by disallowing if the word is the same with the start word
+        if word == title {
+            return false
+        } else {
         // ... by checking if the usedWords array contains the answer being submitted
         return !usedWords.contains(word)
+        }
     }
     
     // 3. Check if the word is valid English
     func isReal(word: String) -> Bool {
-        // a) by adopting native UITextChecker, which is an iOS class to spot spelling errors
-        // but ALERT!: UITextChecker predates Swift. It's written in Obj-C, hence slightly different syntax
-        let checker = UITextChecker()
-        // b) then creating a range to hold character count of the word
-        let range = NSRange(location: 0, length: word.utf16.count)
-        // c) next, using rangeOfMisselledWord(in:) method of UITextChecker to scan the word for the whole range
-        // rangeOfMisselledWord(in:) is in fact yet another NSRange structure to tell where the misspelling was found
-        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        // d) lastly, returns true/false dependent on whether misspelledRange.location equates NSNotFound
-        return misspelledRange.location == NSNotFound
+        // Disallow if answer is shorter than 3 letters
+        if word.count < 3 {
+            return false
+        } else {
+            // a) by adopting native UITextChecker, which is an iOS class to spot spelling errors
+            // but ALERT!: UITextChecker predates Swift. It's written in Obj-C, hence slightly different syntax
+            let checker = UITextChecker()
+            // b) then creating a range to hold character count of the word
+            let range = NSRange(location: 0, length: word.utf16.count)
+            // c) next, using rangeOfMisselledWord(in:) method of UITextChecker to scan the word for the whole range
+            // rangeOfMisselledWord(in:) is in fact yet another NSRange structure to tell where the misspelling was found
+            let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+            // d) lastly, returns true/false dependent on whether misspelledRange.location equates NSNotFound
+            return misspelledRange.location == NSNotFound
+        }
+        
     }
     // End of methods to check for valid answer
     
@@ -169,13 +180,13 @@ class ViewController: UITableViewController {
                 // but if not real
                 else {
                     errorTitle = "You word inventor you"
-                    errorMessage = "\(answer) is not in any English dictionaries yet you know!"
+                    errorMessage = "Don't make stuff up you know!"
                 }
             }
             // and if already used
             else {
                 errorTitle = "Word used already"
-                errorMessage = "Isn't it funny to repeat yourself?"
+                errorMessage = "Isn't it funny to repeat yourself? Be original!"
             }
         }
         // lastly, if not made from letters of the chosen word
