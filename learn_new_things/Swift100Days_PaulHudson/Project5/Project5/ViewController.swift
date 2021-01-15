@@ -136,10 +136,10 @@ class ViewController: UITableViewController {
     
     // 3. Check if the word is valid English
     func isReal(word: String) -> Bool {
-        // Disallow if answer is shorter than 3 letters
-        if word.count < 3 {
-            return false
-        } else {
+//        // Disallow if answer is shorter than 3 letters
+//        if word.count < 3 {
+//            return false
+//        } else {
             // a) by adopting native UITextChecker, which is an iOS class to spot spelling errors
             // but ALERT!: UITextChecker predates Swift. It's written in Obj-C, hence slightly different syntax
             let checker = UITextChecker()
@@ -150,7 +150,7 @@ class ViewController: UITableViewController {
             let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
             // d) lastly, returns true/false dependent on whether misspelledRange.location equates NSNotFound
             return misspelledRange.location == NSNotFound
-        }
+//        }
         
     }
     // End of methods to check for valid answer
@@ -192,17 +192,22 @@ class ViewController: UITableViewController {
         var errorTitle: String?
         var errorMessage: String?
         
+        // If the answer is not proper English and short
+        if answer.count < 3 {
+            errorTitle = "Short guess"
+            errorMessage = "Don't be lazy! Try a longer word"
+        }
         // Pass in the answer (already lowercased from the calls right above) to "word" param
-        if !isPossible(word: answer) {
+        else if !isPossible(word: answer) {
             guard let title = title?.lowercased() else { return }
             errorTitle = "Impossibru!"
             errorMessage = "You know for damn sure \(answer) isn't created from \(title)!"
         }
-        if !isOriginal(word: answer) {
+        else if !isOriginal(word: answer) {
             errorTitle = "Word used already"
             errorMessage = "Isn't it funny to repeat yourself? Be original!"
         }
-        if !isReal(word: answer) {
+        else if !isReal(word: answer) {
             errorTitle = "You word inventor you"
             errorMessage = "Don't make stuff up you know!"
         }
