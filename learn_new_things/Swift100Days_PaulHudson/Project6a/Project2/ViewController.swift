@@ -42,6 +42,16 @@ class ViewController: UIViewController {
     button2.layer.borderColor = UIColor(red: 0.86, green: 0.56, blue: 0.15, alpha: 1.00).cgColor
     button3.layer.borderColor = UIColor(red: 0.86, green: 0.56, blue: 0.15, alpha: 1.00).cgColor
     
+    // Add round corners to button masks
+    button1.layer.cornerRadius = 16
+    button2.layer.cornerRadius = 16
+    button3.layer.cornerRadius = 16
+    
+    // Set flags to fill the button rounded bounds
+    button1.layer.masksToBounds = true
+    button2.layer.masksToBounds = true
+    button3.layer.masksToBounds = true
+    
     // Call askQuestion() method
     askQuestion()
   }
