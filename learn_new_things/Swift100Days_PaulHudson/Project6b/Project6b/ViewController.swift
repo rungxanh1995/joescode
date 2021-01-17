@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         for label in viewLabels {
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
+            label.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2, constant: -10.0).isActive = true
             
             if let previous = previous {
                 // previous is not nil, we have a previous label - create a height constraint
