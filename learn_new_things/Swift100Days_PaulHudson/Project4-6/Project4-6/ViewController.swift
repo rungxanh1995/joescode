@@ -16,7 +16,9 @@ class ViewController: UITableViewController {
         
         title = "Shopping List"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForItem))
+        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForItem))
+        let shareButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        navigationItem.rightBarButtonItems = [addButtonItem, shareButtonItem]
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startNewList))
         
@@ -43,6 +45,14 @@ class ViewController: UITableViewController {
         ac.addAction(addItem)
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
+        present(ac, animated: true)
+    }
+    
+    @objc func shareTapped() {
+        let listToShare = shoppingList.joined(separator: ", ")
+        
+        let ac = UIActivityViewController(activityItems: ["What to get:\n\(listToShare)"], applicationActivities: [])
+        ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItems?[1]
         present(ac, animated: true)
     }
     
