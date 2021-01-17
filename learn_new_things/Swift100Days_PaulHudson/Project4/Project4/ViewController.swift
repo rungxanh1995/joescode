@@ -89,6 +89,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         // Create an array containing the defined buttons -> sets to toolbarItems
         toolbarItems = [backButton, spacer, forwardButton, spacer, progressButton, spacer, listButton, spacer, refreshButton]
         navigationController?.isToolbarHidden = false
+        navigationController?.hidesBarsOnSwipe = true
         
         // Add a KVO observer of the estimatedProgress property on the web view
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
