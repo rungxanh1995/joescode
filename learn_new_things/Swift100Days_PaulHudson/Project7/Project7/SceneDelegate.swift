@@ -17,6 +17,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // Insert a second tab bar using AppDelegate -> SceneDelegate from iOS 13
+        // This let's us use the same class w/o duplicating the screen in Storyboard
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            // 2. Create a new ViewController programmatically, using current app bundle
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // 3. Create the new similar nav controller using the storyboard ID same as the one in Main.storyboard
+            let vc = storyboard.instantiateViewController(withIdentifier: "NavController")
+            // 4. Add a tab bar item to this nav controller
+            vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
+            // 5. Add the new view controller to this tab bar controller's current visible tabs via the viewControllers array
+            tabBarController.viewControllers?.append(vc)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

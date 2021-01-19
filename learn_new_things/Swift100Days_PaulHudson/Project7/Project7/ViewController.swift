@@ -15,16 +15,30 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Original URL for JSON petition file from the White House website
-         let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
-        // Cached JSON on hackingwithswift.com
-        // let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        title = "Petitions to the White House"
+        
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            // If tabBarItem #0 is selected then
+            
+            // Original URL for JSON petition file from the White House website
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+            // Backup cached JSON on hackingwithswift.com
+            // "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
+            // Backup cached JSON on hackingwithswift.com
+            // "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
+                return
             }
         }
+        showError()
     }
     
     func parse(json: Data) {
@@ -36,6 +50,14 @@ class ViewController: UITableViewController {
             // Tell tableView to reload itself
             tableView.reloadData()
         }
+    }
+    
+    // Method to alert users when data doesn't work properly
+    func showError() {
+        let ac = UIAlertController(title: "Loading Error", message: "There was an unexpected issue loading the petitions feed. Please check your connection and try again later.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+//        ac.addAction(UIAlertAction(title: "Reload", style: .default, handler: parse))
+        present(ac, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
