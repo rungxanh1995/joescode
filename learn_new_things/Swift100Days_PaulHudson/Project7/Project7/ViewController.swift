@@ -15,18 +15,20 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Petitions to the White House"
+        // Enable large title of this view controller
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
             // If tabBarItem #0 is selected then
-            
+            title = "Recent Petitions"
             // Original URL for JSON petition file from the White House website
             urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
             // Backup cached JSON on hackingwithswift.com
             // "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
+            title = "Popular Petitions"
             urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
             // Backup cached JSON on hackingwithswift.com
             // "https://www.hackingwithswift.com/samples/petitions-2.json"

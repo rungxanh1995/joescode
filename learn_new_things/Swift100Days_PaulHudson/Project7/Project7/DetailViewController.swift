@@ -24,6 +24,9 @@ class DetailViewController: UIViewController {
         guard let detailItem = detailItem else { return }
         // Title of the view
         title = "Petition Details"
+        // Disable large title in Detail screen
+        navigationItem.largeTitleDisplayMode = .never
+        
         // Custom HTML code to be rendered by webView
         let html = """
         <html>
