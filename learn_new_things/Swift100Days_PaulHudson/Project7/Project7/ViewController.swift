@@ -15,6 +15,10 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Right bar button to show credit
+        let infoButton = UIImage(systemName: "info.circle")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: infoButton,style: .plain, target: self, action: #selector(creditTapped))
+        
         // Enable large title of this view controller
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -59,6 +63,13 @@ class ViewController: UITableViewController {
         let ac = UIAlertController(title: "Loading Error", message: "There was an unexpected issue loading the petitions feed. Please check your connection and try again later.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
 //        ac.addAction(UIAlertAction(title: "Reload", style: .default, handler: parse))
+        present(ac, animated: true)
+    }
+    
+    // Method to show credit upon tapping the right bar button
+    @objc func creditTapped() {
+        let ac = UIAlertController(title: "Petitions Information", message: "Details of these petitions are provided by We The People API of the White House at api.whitehouse.gov", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
 
