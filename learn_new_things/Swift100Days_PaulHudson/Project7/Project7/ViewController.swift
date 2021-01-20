@@ -19,10 +19,13 @@ class ViewController: UITableViewController {
         // Right bar button to show credit
         let infoButton = UIImage(systemName: "info.circle")
         let infoBarButtonItem = UIBarButtonItem(image: infoButton, style: .plain, target: self, action: #selector(creditTapped))
+        // Right bar button to refresh the tab view
+        let refreshButton = UIImage(systemName: "arrow.clockwise.circle")
+        let refreshBarButtonItem = UIBarButtonItem(image: refreshButton, style: .plain, target: self, action: #selector(refreshView))
         
         let searchBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(promptForPetitionSearch))
-        
-        navigationItem.rightBarButtonItems = [infoBarButtonItem]
+             
+        navigationItem.rightBarButtonItems = [infoBarButtonItem, refreshBarButtonItem]
         navigationItem.leftBarButtonItems = [searchBarButtonItem]
         
         // Enable large title of this view controller
@@ -34,12 +37,12 @@ class ViewController: UITableViewController {
             // If tabBarItem #0 is selected then
             title = "Recent Petitions"
             // Original URL for JSON petition file from the White House website
-            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=200"
             // Backup cached JSON on hackingwithswift.com
             // "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             title = "Popular Petitions"
-            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=200"
             // Backup cached JSON on hackingwithswift.com
             // "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
@@ -63,6 +66,20 @@ class ViewController: UITableViewController {
             // Tell tableView to reload itself
             tableView.reloadData()
         }
+    }
+    
+    // Method to refresh the table view w/o downloading & parsing data again
+    @objc func refreshView() {
+        // Reassign all value of the petitions array to filteredPetitions
+        filteredPetitions = petitions
+        // Reset title
+        if navigationController?.tabBarItem.tag == 0 {
+            title = "Recent Petitions"
+        } else {
+            title = "Popular Petitions"
+        }
+        // Shake up table view
+        tableView.reloadData()
     }
     
     // Method to alert users when data doesn't work properly
@@ -96,6 +113,7 @@ class ViewController: UITableViewController {
     
     func searchPetition(_ topic: String) {
         // Declare possible search cases
+        let topic = topic.trimmingLeadingAndTrailingSpaces()
         let lowerTopic = topic.lowercased()
         let upperTopic = topic.uppercased()
         let cappedTopic = topic.capitalized
@@ -129,3 +147,9 @@ class ViewController: UITableViewController {
     }
 }
 
+// Extension to string to trim adundant spaces for petition search term
+extension String {
+    func trimmingLeadingAndTrailingSpaces(using characterSet: CharacterSet = .whitespacesAndNewlines) -> String {
+        return trimmingCharacters(in: characterSet)
+    }
+}
