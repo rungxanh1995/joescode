@@ -99,7 +99,7 @@ class ViewController: UITableViewController {
     
     // Method to search for a specific petition upon tapping the left bar button
     @objc func promptForPetitionSearch() {
-        let ac = UIAlertController(title: "Search A Petition", message: "Type a topic you would like to filter out from the petition list", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Search Petition List", message: "Type a topic or the petition ID that you would like to filter out from the current list", preferredStyle: .alert)
         ac.addTextField()
         
         let searchPetition = UIAlertAction(title: "Search", style: .default) { [weak self, weak ac] (action) in
@@ -119,7 +119,7 @@ class ViewController: UITableViewController {
         let cappedTopic = topic.capitalized
 
         // Use filter closure to loop through the petitions array for the topic
-        filteredPetitions = petitions.filter { $0.title.contains(topic) || $0.title.contains(lowerTopic) || $0.title.contains(upperTopic) || $0.title.contains(cappedTopic) || $0.body.contains(topic) || $0.body.contains(lowerTopic) || $0.body.contains(upperTopic) || $0.body.contains(cappedTopic) }
+        filteredPetitions = petitions.filter { $0.title.contains(topic) || $0.title.contains(lowerTopic) || $0.title.contains(upperTopic) || $0.title.contains(cappedTopic) || $0.body.contains(topic) || $0.body.contains(lowerTopic) || $0.body.contains(upperTopic) || $0.body.contains(cappedTopic) || $0.id.contains(topic)}
         // Change title to topic string
         title = "\"\(topic)\""
         // Shake up the table view

@@ -50,10 +50,10 @@ class DetailViewController: UIViewController {
             </head>
             <body>
                 <h1>\(detailItem.title)</h1>
-                <br>
                 <p>\(detailItem.body)</p>
                 <br>
-                <p>This petition has collected <strong>\(detailItem.signatureCount)</strong> signatures.</p>
+                <p style="font-style:italic; font-size: 90%;">Petition ID: \(detailItem.id)</p>
+                <p>This \(detailItem.status) petition has collected <strong>\(detailItem.signatureCount)</strong> signatures, and needs <strong>\(detailItem.signaturesNeeded)</strong> more to reach its <strong>\(detailItem.signatureThreshold)</strong> threshold. More info at \(detailItem.url).</p>
             </body>
         </html>
         """
