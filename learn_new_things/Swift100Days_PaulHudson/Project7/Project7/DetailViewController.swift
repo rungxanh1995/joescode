@@ -42,12 +42,18 @@ class DetailViewController: UIViewController {
                     font-size: 1.5em;
                     font-family: Georgia, sans-serif;
                     }
+                    p:last-child {
+                    font-size: 90%;
+                    font-style: italic;
+                    }
                 </style>
             </head>
             <body>
                 <h1>\(detailItem.title)</h1>
                 <br>
                 <p>\(detailItem.body)</p>
+                <br>
+                <p>This petition has collected <strong>\(detailItem.signatureCount)</strong> signatures.</p>
             </body>
         </html>
         """
