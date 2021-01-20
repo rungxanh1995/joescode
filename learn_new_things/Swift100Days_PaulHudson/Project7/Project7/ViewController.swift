@@ -95,8 +95,17 @@ class ViewController: UITableViewController {
     }
     
     func searchPetition(_ topic: String) {
-        // Logic here
-        return
+        // Declare possible search cases
+        let lowerTopic = topic.lowercased()
+        let upperTopic = topic.uppercased()
+        let cappedTopic = topic.capitalized
+
+        // Use filter closure to loop through the petitions array for the topic
+        filteredPetitions = petitions.filter { $0.title.contains(topic) || $0.title.contains(lowerTopic) || $0.title.contains(upperTopic) || $0.title.contains(cappedTopic) || $0.body.contains(topic) || $0.body.contains(lowerTopic) || $0.body.contains(upperTopic) || $0.body.contains(cappedTopic) }
+        // Change title to topic string
+        title = "\"\(topic)\""
+        // Shake up the table view
+        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
