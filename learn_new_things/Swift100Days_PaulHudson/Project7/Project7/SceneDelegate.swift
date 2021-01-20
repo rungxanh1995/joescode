@@ -31,8 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // 5. Add the new view controller to this tab bar controller's current visible tabs via the viewControllers array
             tabBarController.viewControllers?.append(vc)
             
-            // Enable large title of this view controller
-            vc.navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
 
