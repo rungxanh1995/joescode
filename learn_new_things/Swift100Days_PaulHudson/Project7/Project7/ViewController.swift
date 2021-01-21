@@ -37,14 +37,14 @@ class ViewController: UITableViewController {
             // If tabBarItem #0 is selected then
             title = "Recent Petitions"
             // Original URL for JSON petition file from the White House website
-            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=200"
+//            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=200"
             // Backup cached JSON on hackingwithswift.com
-            // "https://www.hackingwithswift.com/samples/petitions-1.json"
+            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             title = "Popular Petitions"
-            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=200"
+//            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=200"
             // Backup cached JSON on hackingwithswift.com
-            // "https://www.hackingwithswift.com/samples/petitions-2.json"
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
         if let url = URL(string: urlString) {
@@ -99,7 +99,7 @@ class ViewController: UITableViewController {
     
     // Method to search for a specific petition upon tapping the left bar button
     @objc func promptForPetitionSearch() {
-        let ac = UIAlertController(title: "Search Petition List", message: "Type a topic or the petition ID that you would like to filter out from the current list", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Search Petition List", message: "Type a topic or petition ID that you would like to filter out", preferredStyle: .alert)
         ac.addTextField()
         
         let searchPetition = UIAlertAction(title: "Search", style: .default) { [weak self, weak ac] (action) in
