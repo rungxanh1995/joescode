@@ -233,6 +233,15 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            // If no answers found, show an alert
+            print()
+            let ac = UIAlertController(title: "Oops", message: "Unfortunately, '\(currentAnswer.text!.lowercased())' exceeds our expectation. Try again?", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(ac, animated: true)
+            
+            // Then clear the textfield so the user can enter a new answer right away
+            clearTapped(sender)
         }
     }
     
