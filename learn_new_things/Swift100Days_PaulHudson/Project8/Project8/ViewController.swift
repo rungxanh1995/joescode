@@ -90,6 +90,9 @@ class ViewController: UIViewController {
         // Create a UIView to host the word buttons
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsView.layer.borderWidth = 1
+        buttonsView.layer.cornerRadius = 16
+        buttonsView.layer.borderColor = UIColor.lightGray.cgColor
         view.addSubview(buttonsView)
         
 
