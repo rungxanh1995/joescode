@@ -186,17 +186,57 @@ class ViewController: UIViewController {
 
     // Method when each letter button is tapped
     @objc func letterTapped(_ sender: UIButton) {
-        
+        guard let buttonTitle = sender.titleLabel?.text else { return }
+        // Add the text of each tapped button to currentAnswer field
+        currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
+        // Append the letter button to this array
+        // activatedButtons is the placeholder array for answers, since user interaction was deactivated
+        activatedButtons.append(sender)
+        // Hide each letter button after it's been tapped
+        sender.isHidden = true
     }
     
     // Method when Submit button is tapped
     @objc func submitTapped(_ sender: UIButton) {
+        guard let answerText = currentAnswer.text else { return }
         
+        // Check if we can find the submitted answer text in the possibleAnswers array
+        if let answerPosition = possibleAnswers.firstIndex(of: answerText) {
+            // If found, first clear the placeholder array activatedButtons
+            activatedButtons.removeAll()
+            
+            // Split the answersLabel into an array of separated clue phrases at each "\n"
+            var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
+            // Replace the splitted clue lines at current answer position, with the current answer's text
+            splitAnswers?[answerPosition] = answerText
+            // Then stitch them all together again with "\n"
+            answersLabel.text = splitAnswers?.joined(separator: "\n")
+            
+            // Then clear the textfield's text
+            currentAnswer.text = ""
+            
+            score += 1
+            
+            // When score is divisible by 7, prompt the user for a level-up of the game
+            if score % 7 == 0 {
+                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
+                present(ac, animated: true)
+            }
+        }
     }
     
     // Method when Clear button is tapped
     @objc func clearTapped(_ sender: UIButton) {
+        // Reset textfield's text to an empty string
+        currentAnswer.text = ""
         
+        for btn in activatedButtons {
+            // Place the letter buttons back to their place
+            btn.isHidden = false
+        }
+        // Clear tapped buttons' value off of the placeholder array activatedButtons
+        activatedButtons.removeAll()
     }
     
     // Main method to load a game level
@@ -261,6 +301,19 @@ class ViewController: UIViewController {
             for i in 0..<letterButtons.count {
                 letterButtons[i].setTitle(letterBits[i], for: .normal)
             }
+        }
+    }
+    
+    // Method to increase game level
+    func levelUp(action: UIAlertAction) {
+        level += 1
+        possibleAnswers.removeAll(keepingCapacity: true)
+        
+        loadLevel()
+        
+        // Make all buttons visible again
+        for btn in letterButtons {
+            btn.isHidden = false
         }
     }
 }
