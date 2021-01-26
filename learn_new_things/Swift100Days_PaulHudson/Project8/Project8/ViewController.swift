@@ -227,18 +227,20 @@ class ViewController: UIViewController {
             
             score += 1
             
-            // When score is divisible by 7, prompt the user for a level-up of the game
-            if score % 7 == 0 {
+            // When the answersLabel doesn't have hints anymore, prompt the user for a level-up of the game
+            if answersLabel.text?.contains("letters") != true {
                 let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
         } else {
             // If no answers found, show an alert
-            print()
             let ac = UIAlertController(title: "Oops", message: "Unfortunately, '\(currentAnswer.text!.lowercased())' exceeds our expectation. Try again?", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(ac, animated: true)
+            
+            // Deduct 1 point
+            score -= 1
             
             // Then clear the textfield so the user can enter a new answer right away
             clearTapped(sender)
@@ -326,6 +328,7 @@ class ViewController: UIViewController {
     // Method to increase game level
     func levelUp(action: UIAlertAction) {
         level += 1
+        score = 0
         possibleAnswers.removeAll(keepingCapacity: true)
         
         loadLevel()
