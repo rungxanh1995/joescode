@@ -21,7 +21,14 @@ class ViewController: UIViewController {
     // Store possible answers
     var possibleAnswers = [String]()
     
-    var score = 0   // player score
+    // Player score
+    var score = 0 {
+        didSet {
+            // Update the scoreLabel text when score value changes
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
     var level = 1   // current game lavel
     
     override func loadView() {
