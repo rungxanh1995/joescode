@@ -31,19 +31,23 @@ class ViewController: UITableViewController {
         // Enable large title of this view controller
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        // Change title of tab view accordingly
+        if navigationController?.tabBarItem.tag == 0 {
+            title = "Recent Petitions"
+        } else {
+            title = "Popular Petitions"
+        }
+        
+        // Download JSON data in the background
+        performSelector(inBackground: #selector(fetchJSON), with: nil)
+    }
+    
+    @objc func fetchJSON() {
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
-            // If tabBarItem #0 is selected then
-            title = "Recent Petitions"
-            // Original URL for JSON petition file from the White House website
-//            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=200"
-            // Backup cached JSON on hackingwithswift.com
             urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
-            title = "Popular Petitions"
-//            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=200"
-            // Backup cached JSON on hackingwithswift.com
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
@@ -53,7 +57,9 @@ class ViewController: UITableViewController {
                 return
             }
         }
-        showError()
+        
+        // Show error alert if data is downloaded and parsed
+        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
     }
     
     func parse(json: Data) {
@@ -64,7 +70,9 @@ class ViewController: UITableViewController {
             petitions = jsonPetitions.results
             filteredPetitions = petitions
             // Tell tableView to reload itself
-            tableView.reloadData()
+            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        } else {
+            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
     }
     
@@ -83,10 +91,9 @@ class ViewController: UITableViewController {
     }
     
     // Method to alert users when data doesn't work properly
-    func showError() {
+    @objc func showError() {
         let ac = UIAlertController(title: "Loading Error", message: "There was an unexpected issue loading the petitions feed. Please check your connection and try again later.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-//        ac.addAction(UIAlertAction(title: "Reload", style: .default, handler: parse))
         present(ac, animated: true)
     }
     
