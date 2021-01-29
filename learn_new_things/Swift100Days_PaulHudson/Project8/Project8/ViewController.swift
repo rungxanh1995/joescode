@@ -262,65 +262,71 @@ class ViewController: UIViewController {
     
     // Main method to load a game level
     func loadLevel() {
-        // Store all clues of the level
-        var clueString = ""
-        // Store the hint of how many letters each answer has
-        var cleanedAnswerString = ""
-        // Store all the letter groups, eg. "HA,UNT, ED"
-        var letterBits = [String]()
-        
-        // Search the app bundle for level text file
-        if let levelFileURL = Bundle.main.url(forResource: "level\(level)", withExtension: "txt") {
-            // Load the text content of the level file
-            if let levelContents = try? String(contentsOf: levelFileURL) {
-                // Break down the content into array of lines at the newline character
-                var lines = levelContents.components(separatedBy: "\n")
-                
-                // Shake up the lines array so order of these lines are different each time the game is played
-                lines.shuffle()
-                
-                // Loop through the array of lines using an "index" and "line"
-                for (index, line) in lines.enumerated() {
-                    // Break down a line into parts at ": "
-                    let parts = line.components(separatedBy: ": ")
-                    // Raw answer is at index 0 of each part
-                    let rawAnswer = parts[0]
-                    // The clue is at index 1 of each part
-                    let clue = parts[1]
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            // Store all clues of the level
+            var clueString = ""
+            // Store the hint of how many letters each answer has
+            var cleanedAnswerString = ""
+            // Store all the letter groups, eg. "HA,UNT, ED"
+            var letterBits = [String]()
+            
+            // Search the app bundle for level text file
+            if let levelFileURL = Bundle.main.url(forResource: "level\(level)", withExtension: "txt") {
+                // Load the text content of the level file
+                if let levelContents = try? String(contentsOf: levelFileURL) {
+                    // Break down the content into array of lines at the newline character
+                    var lines = levelContents.components(separatedBy: "\n")
                     
-                    // Define the string for a clue then add to the clue string
-                    clueString += "\(index + 1).\t\(clue)\n"
+                    // Shake up the lines array so order of these lines are different each time the game is played
+                    lines.shuffle()
                     
-                    // Now clean the "|" off of eacg raw answer to add them to the solution string
-                    let cleanedAnswerWord = rawAnswer.replacingOccurrences(of: "|", with: "")
-                    // Define how the hint of number of letters is displayed
-                    cleanedAnswerString += "\(cleanedAnswerWord.count) letters\n"
-                    // Add the solution word to possibleAnswers array
-                    possibleAnswers.append(cleanedAnswerWord)
-                    
-                    // Also, break down the original raw answer with "|"s in between into array of 3 elements
-                    let bits = rawAnswer.components(separatedBy: "|")
-                    // Then add these bits into the letter bits array of each answer
-                    letterBits += bits
+                    // Loop through the array of lines using an "index" and "line"
+                    for (index, line) in lines.enumerated() {
+                        // Break down a line into parts at ": "
+                        let parts = line.components(separatedBy: ": ")
+                        // Raw answer is at index 0 of each part
+                        let rawAnswer = parts[0]
+                        // The clue is at index 1 of each part
+                        let clue = parts[1]
+                        
+                        // Define the string for a clue then add to the clue string
+                        clueString += "\(index + 1).\t\(clue)\n"
+                        
+                        // Now clean the "|" off of eacg raw answer to add them to the solution string
+                        let cleanedAnswerWord = rawAnswer.replacingOccurrences(of: "|", with: "")
+                        // Define how the hint of number of letters is displayed
+                        cleanedAnswerString += "\(cleanedAnswerWord.count) letters\n"
+                        // Add the solution word to possibleAnswers array
+                        possibleAnswers.append(cleanedAnswerWord)
+                        
+                        // Also, break down the original raw answer with "|"s in between into array of 3 elements
+                        let bits = rawAnswer.components(separatedBy: "|")
+                        // Then add these bits into the letter bits array of each answer
+                        letterBits += bits
+                    }
                 }
             }
-        }
         
-        // Now change initial texts of cluesLabel and answersLabel to cleaned clues and hints via loadLevel()
-        // Trim the last "\n" off of each string
-        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersLabel.text = cleanedAnswerString.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Now change initial texts of cluesLabel and answersLabel to cleaned clues and hints via loadLevel()
+            // Trim the last "\n" off of each string
+            DispatchQueue.main.async {
+                cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+                answersLabel.text = cleanedAnswerString.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
         
-        // Though the answer words were shuffled, their letter bits aren't
-        // Which means the letter buttons flow does give off all the answers
-        // Hence shuffling the letter bits array too
-        letterBits.shuffle()
-        
-        // Ensure no. of letter buttons on screen is same with no. of letter bits in input file's raw answers
-        if letterButtons.count == letterBits.count {
-            // Then use a for loop to assign each letter button's title value
-            for i in 0..<letterButtons.count {
-                letterButtons[i].setTitle(letterBits[i], for: .normal)
+            // Though the answer words were shuffled, their letter bits aren't
+            // Which means the letter buttons flow does give off all the answers
+            // Hence shuffling the letter bits array too
+            letterBits.shuffle()
+            
+            // Ensure no. of letter buttons on screen is same with no. of letter bits in input file's raw answers
+            if letterButtons.count == letterBits.count {
+                // Then use a for loop to assign each letter button's title value
+                for i in 0..<letterButtons.count {
+                    DispatchQueue.main.async {
+                        letterButtons[i].setTitle(letterBits[i], for: .normal)
+                    }
+                }
             }
         }
     }
