@@ -47,13 +47,19 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
+        // This is where the data downloading and parsing work
+        // async() to make all data loading code happens in the background
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {
+                    // Prefix with self as entire if let code is now inside a closure
+                    self.parse(json: data)
+                    return
+                }
             }
+            // Prefix with self as showError() is now inside a closure
+            self.showError()
         }
-        showError()
     }
     
     func parse(json: Data) {
@@ -64,7 +70,10 @@ class ViewController: UITableViewController {
             petitions = jsonPetitions.results
             filteredPetitions = petitions
             // Tell tableView to reload itself
-            tableView.reloadData()
+            // Shift this work back to the main thread
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -83,11 +92,13 @@ class ViewController: UITableViewController {
     }
     
     // Method to alert users when data doesn't work properly
+    // Push this code to main thread as it defaulted to work in background thread where it started
     func showError() {
-        let ac = UIAlertController(title: "Loading Error", message: "There was an unexpected issue loading the petitions feed. Please check your connection and try again later.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-//        ac.addAction(UIAlertAction(title: "Reload", style: .default, handler: parse))
-        present(ac, animated: true)
+        DispatchQueue.main.async {
+            let ac = UIAlertController(title: "Loading Error", message: "There was an unexpected issue loading the petitions feed. Please check your connection and try again later.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            self.present(ac, animated: true)
+        }
     }
     
     // Method to show credit upon tapping the right bar button
