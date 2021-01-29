@@ -36,18 +36,20 @@ class ViewController: UITableViewController {
         // This sets to the contents of directory at "path" above
         // "items" is an array of strings containing filenames
         
-        // For loop iterates through each item found in the app contents
-        for item in items {
-            // Work in filenames that have prefix "nssl" only {
-            if item.hasPrefix("nssl") {
-                // Add that filename to the initial empty array
-                pictures.append(item)
-                // Sort filenames in root view screen
-                pictures.sort()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            // For loop iterates through each item found in the app contents
+            for item in items {
+                // Work in filenames that have prefix "nssl" only {
+                if item.hasPrefix("nssl") {
+                    // Add that filename to the initial empty array
+                    self?.pictures.append(item)
+                    // Sort filenames in root view screen
+                    self?.pictures.sort()
+                }
             }
         }
-        // Print the filenames to debug console
-        print(pictures)
+        
+        tableView.reloadData()
     }
     
     // Set how many rows to appear in table view
