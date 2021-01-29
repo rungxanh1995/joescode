@@ -111,7 +111,11 @@ class ViewController: UITableViewController {
         
         let searchPetition = UIAlertAction(title: "Search", style: .default) { [weak self, weak ac] (action) in
             guard let topic = ac?.textFields?[0].text else { return }
-            self?.searchPetition(topic)
+            
+            // Searching in the background
+            DispatchQueue.global().async {
+                self?.searchPetition(topic)
+            }
         }
         ac.addAction(searchPetition)
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -127,10 +131,14 @@ class ViewController: UITableViewController {
 
         // Use filter closure to loop through the petitions array for the topic
         filteredPetitions = petitions.filter { $0.title.contains(topic) || $0.title.contains(lowerTopic) || $0.title.contains(upperTopic) || $0.title.contains(cappedTopic) || $0.body.contains(topic) || $0.body.contains(lowerTopic) || $0.body.contains(upperTopic) || $0.body.contains(cappedTopic) || $0.id.contains(topic)}
-        // Change title to topic string
-        title = "\"\(topic)\""
-        // Shake up the table view
-        tableView.reloadData()
+        
+        // Shift UI change to main thread
+        DispatchQueue.main.async {
+            // Change title to topic string
+            self.title = "\"\(topic)\""
+            // Shake up the table view
+            self.tableView.reloadData()
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
