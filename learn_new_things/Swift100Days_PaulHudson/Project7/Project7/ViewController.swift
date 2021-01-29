@@ -113,7 +113,7 @@ class ViewController: UITableViewController {
     
     func searchPetition(_ topic: String) {
         // Declare possible search cases
-        let topic = topic.trimmingLeadingAndTrailingSpaces()
+        let topic = topic.trimmingCharacters(in: .whitespacesAndNewlines)
         let lowerTopic = topic.lowercased()
         let upperTopic = topic.uppercased()
         let cappedTopic = topic.capitalized
@@ -144,12 +144,5 @@ class ViewController: UITableViewController {
         let vc = DetailViewController()
         vc.detailItem = filteredPetitions[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-// Extension to string to trim adundant spaces for petition search term
-extension String {
-    func trimmingLeadingAndTrailingSpaces(using characterSet: CharacterSet = .whitespacesAndNewlines) -> String {
-        return trimmingCharacters(in: characterSet)
     }
 }
