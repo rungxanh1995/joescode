@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C28173A25CBEFC700D2FB16 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28173925CBEFC700D2FB16 /* PersonCell.swift */; };
 		2CA90FB125CBA9C8008CB137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA90FB025CBA9C8008CB137 /* AppDelegate.swift */; };
 		2CA90FB325CBA9C8008CB137 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA90FB225CBA9C8008CB137 /* SceneDelegate.swift */; };
 		2CA90FB525CBA9C8008CB137 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA90FB425CBA9C8008CB137 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C28173925CBEFC700D2FB16 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		2CA90FAD25CBA9C8008CB137 /* Project10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA90FB025CBA9C8008CB137 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CA90FB225CBA9C8008CB137 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				2CA90FB025CBA9C8008CB137 /* AppDelegate.swift */,
 				2CA90FB225CBA9C8008CB137 /* SceneDelegate.swift */,
 				2CA90FB425CBA9C8008CB137 /* ViewController.swift */,
+				2C28173925CBEFC700D2FB16 /* PersonCell.swift */,
 				2CA90FB625CBA9C8008CB137 /* Main.storyboard */,
 				2CA90FB925CBA9CA008CB137 /* Assets.xcassets */,
 				2CA90FBB25CBA9CA008CB137 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			files = (
 				2CA90FB525CBA9C8008CB137 /* ViewController.swift in Sources */,
 				2CA90FB125CBA9C8008CB137 /* AppDelegate.swift in Sources */,
+				2C28173A25CBEFC700D2FB16 /* PersonCell.swift in Sources */,
 				2CA90FB325CBA9C8008CB137 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
