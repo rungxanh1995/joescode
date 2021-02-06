@@ -17,6 +17,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
     }
     
+    // Method to add new image
     @objc func addNewPerson() {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -25,13 +26,14 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Get the edited copy of the picked immage
         guard let image = info[.editedImage] as? UIImage else { return }
         
         let imageName = UUID().uuidString
         let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
         
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
-            try? jpegData.write(to: imagePath)
+            try? jpegData.write(to: imagePath) // write copy of image to disk
         }
         
         let person = Person(name: "Unknown", image: imageName)
@@ -58,10 +60,10 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         }
         
         // Otherwise if got a PersonCell, define and return it
-        let person = people[indexPath.item]
+        let person = people[indexPath.item] // a specific Person object in the people array
         cell.name.text = person.name
         
-        let path = getDocumentsDirectory().appendingPathComponent(person.image)
+        let path = getDocumentsDirectory().appendingPathComponent(person.image) // path of the image
         cell.imageView.image = UIImage(contentsOfFile: path.path)
         cell.imageView.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
         cell.imageView.layer.borderWidth = 2
@@ -73,7 +75,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Allow changing a person's name upon tapping the collection view item
+        // Allow changing a person's name upon tapping a specific collection view item
         let person = people[indexPath.item]
         
         let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
