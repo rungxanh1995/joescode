@@ -75,20 +75,45 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Allow changing a person's name upon tapping a specific collection view item
+        // Allow changing a person's name, or delete, upon tapping a specific collection view item
         let person = people[indexPath.item]
         
-        let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
-        ac.addTextField()
+        let acMain = UIAlertController(title: "Options", message: "Choose to ename or delete the person", preferredStyle: .actionSheet)
         
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
-            guard let newName = ac?.textFields?[0].text else { return }
-            person.name = newName
+        // First define the reusable Cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Define the Rename alert
+        let renameAction = UIAlertAction(title: "Rename", style: .default) { [weak self] (action) in
+            let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
+            ac.addTextField()
+
+            ac.addAction(cancelAction)
+            ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] _ in
+                guard let newName = ac?.textFields?[0].text else { return }
+                person.name = newName
+
+                self?.collectionView.reloadData()
+            })
             
-            self?.collectionView.reloadData()
-        })
-        present(ac, animated: true)
+            self?.present(ac, animated: true)
+        }
+        
+        // Define the Delete alert
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
+            let ac = UIAlertController(title: "Confirm delete", message: "Are you sure you would like to delete?", preferredStyle: .alert)
+            
+            ac.addAction(cancelAction)
+            ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil)) // temp nil for now, will learn later in future projects
+            self?.present(ac, animated: true)
+        }
+        
+        
+        // Add all the actions to acMain
+        acMain.addAction(renameAction)
+        acMain.addAction(deleteAction)
+        acMain.addAction(cancelAction)
+        present(acMain, animated: true)
     }
 }
 
