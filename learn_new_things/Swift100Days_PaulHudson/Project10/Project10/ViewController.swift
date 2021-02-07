@@ -109,7 +109,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             ac.addAction(cancelAction)
             ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
                 self?.people.remove(at: indexPath.item)
-                self?.collectionView.reloadData()
+                self?.collectionView.deleteItems(at: [indexPath])
             })
             // this only removes the item from the collection view, not the disk
             // hopefully would learn about the proper approach in future projects, most probably Project12
