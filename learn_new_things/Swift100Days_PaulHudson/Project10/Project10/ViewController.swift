@@ -81,7 +81,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         // Allow changing a person's name, or delete, upon tapping a specific collection view item
         let person = people[indexPath.item]
         
-        let acMain = UIAlertController(title: "Options", message: "Choose to ename or delete the person", preferredStyle: .actionSheet)
+        let acMain = UIAlertController(title: "Options", message: "Choose to rename or delete the person", preferredStyle: .actionSheet)
         
         // First define the reusable Cancel action
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -104,10 +104,15 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         
         // Define the Delete alert
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
-            let ac = UIAlertController(title: "Confirm delete", message: "Are you sure you would like to delete?", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Confirm Delete", message: "Are you sure you would like to delete?", preferredStyle: .alert)
             
             ac.addAction(cancelAction)
-            ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil)) // temp nil for now, will learn later in future projects
+            ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+                self?.people.remove(at: indexPath.item)
+                self?.collectionView.reloadData()
+            })
+            // this only removes the item from the collection view, not the disk
+            // hopefully would learn about the proper approach in future projects, most probably Project12
             self?.present(ac, animated: true)
         }
         
