@@ -124,13 +124,14 @@ class ViewController: UITableViewController {
     
     func searchPetition(_ topic: String) {
         // Declare possible search cases
-        let topic = topic.trimmingLeadingAndTrailingSpaces()
-        let lowerTopic = topic.lowercased()
-        let upperTopic = topic.uppercased()
-        let cappedTopic = topic.capitalized
+        let topic = topic.trimmingLeadingAndTrailingSpaces().lowercased()
 
         // Use filter closure to loop through the petitions array for the topic
-        filteredPetitions = petitions.filter { $0.title.contains(topic) || $0.title.contains(lowerTopic) || $0.title.contains(upperTopic) || $0.title.contains(cappedTopic) || $0.body.contains(topic) || $0.body.contains(lowerTopic) || $0.body.contains(upperTopic) || $0.body.contains(cappedTopic) || $0.id.contains(topic)}
+        filteredPetitions = petitions.filter {
+            $0.title.lowercased().contains(topic) ||
+            $0.body.lowercased().contains(topic) ||
+            $0.id.contains(topic)
+        }
         // Change title to topic string
         title = "\"\(topic)\""
         // Shake up the table view
