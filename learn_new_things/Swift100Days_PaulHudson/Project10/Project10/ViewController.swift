@@ -104,7 +104,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         
         // Define the Delete alert
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
-            let ac = UIAlertController(title: "Confirm Delete", message: "Are you sure you would like to delete?", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Confirm Delete", message: "Are you sure you would like to delete \(person.name)?", preferredStyle: .alert)
             
             ac.addAction(cancelAction)
             ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
