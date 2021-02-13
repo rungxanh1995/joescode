@@ -21,6 +21,22 @@ class GameScene: SKScene {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)    // add a physics body to the whole scene that's a line on each edge
         // acting like a container for the scene
+        
+        // CREATE THE BOUNCERS
+        makeBouncer(at: CGPoint(x: 0, y: 0))
+        makeBouncer(at: CGPoint(x: 256, y: 0))
+        makeBouncer(at: CGPoint(x: 512, y: 0))
+        makeBouncer(at: CGPoint(x: 768, y: 0))
+        makeBouncer(at: CGPoint(x: 1024, y: 0))
+    }
+    
+    // DEFINE THE BOUNCER(s)
+    func makeBouncer(at position: CGPoint) {
+        let bouncer = SKSpriteNode(imageNamed: "bouncer.jpg")
+        bouncer.position = position    // pass the x,y coords to the position property of the bouncer
+        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
+        bouncer.physicsBody?.isDynamic = false  // being false means it's gonna stay in place, not moving
+        addChild(bouncer)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -29,10 +45,11 @@ class GameScene: SKScene {
         if let touch = touches.first    // pull out any screen touches from `touches` set
         {
             let location = touch.location(in: self) // find out where the screen was touched in relation to self/the game scene
-            let box = SKSpriteNode(color: UIColor.red, size: CGSize(width: 64, height: 64))
-            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64)) // add a physics body to the box of same size
-            box.position = location // place the box where the touch happened
-            addChild(box)   // box is also a node, add it to the scene
+            let ball = SKSpriteNode(imageNamed: "ballRed")
+            ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0) // add a circular physics body to the ball with radius of half the image width
+            ball.physicsBody?.restitution = 0.4 // change its bounciness within 0-1 range
+            ball.position = location // place the ball where the touch happened
+            addChild(ball)   // ball is also a node, add it to the scene
         }
     }
 }
