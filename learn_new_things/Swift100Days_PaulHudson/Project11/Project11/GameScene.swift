@@ -28,6 +28,12 @@ class GameScene: SKScene {
         makeBouncer(at: CGPoint(x: 512, y: 0))
         makeBouncer(at: CGPoint(x: 768, y: 0))
         makeBouncer(at: CGPoint(x: 1024, y: 0))
+        
+        // CREATE THE SLOTBASES
+        makeSlot(at: CGPoint(x: 128, y: 0), isGood: true)
+        makeSlot(at: CGPoint(x: 384, y: 0), isGood: false)
+        makeSlot(at: CGPoint(x: 640, y: 0), isGood: true)
+        makeSlot(at: CGPoint(x: 896, y: 0), isGood: false)
     }
     
     // DEFINE THE BOUNCER(s)
@@ -37,6 +43,32 @@ class GameScene: SKScene {
         bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
         bouncer.physicsBody?.isDynamic = false  // being false means it's gonna stay in place, not moving
         addChild(bouncer)
+    }
+    
+    // DEFINE THE SLOT(s)
+    func makeSlot(at position: CGPoint, isGood: Bool) {
+        var slotBase: SKSpriteNode
+        var slotGlow: SKSpriteNode
+        
+        if isGood {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
+        } else {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
+        }
+        
+        slotBase.position = position
+        slotGlow.position = position
+//        slotGlow.zPosition = 0
+        
+        // Make the glow spins, forever
+        let spin = SKAction.rotate(byAngle: (-CGFloat.pi), duration: 5)
+        let spinForever = SKAction.repeatForever(spin)
+        slotGlow.run(spinForever)
+        
+        addChild(slotBase)
+        addChild(slotGlow)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
