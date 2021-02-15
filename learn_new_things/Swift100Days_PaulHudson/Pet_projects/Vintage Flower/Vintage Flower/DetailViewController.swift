@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class DetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
@@ -40,7 +41,10 @@ class DetailViewController: UIViewController {
     @objc func shareTapped() {
         guard let image = imageView.image?.jpegData(compressionQuality: 1) else { return }
         
-        let vc = UIActivityViewController(activityItems: [image, "Flower"], applicationActivities: [])
+        // Define the photo name to be shared
+        let imageName = String((selectedImage?.getFileName().dropFirst(9))!)
+        
+        let vc = UIActivityViewController(activityItems: [image, "\(imageName)"], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
     }

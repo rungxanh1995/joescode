@@ -40,7 +40,12 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FlowerCell", for: indexPath)
-        cell.textLabel?.text = String(flowers[indexPath.row].getFileName()).capitalized
+        
+        // Define the image name for each cell
+        let firstImageName = String(flowers[indexPath.row].getFileName().split(separator: ".")[0].dropFirst(6)) // get the 1st item from the split array
+        let lastImageName = String(flowers[indexPath.row].getFileName().dropFirst(9))
+        let imageName = "\(firstImageName).\t\(lastImageName)"
+        cell.textLabel?.text = imageName
         
         return cell
     }

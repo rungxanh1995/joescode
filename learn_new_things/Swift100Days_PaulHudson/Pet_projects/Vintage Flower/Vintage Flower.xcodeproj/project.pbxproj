@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1D0B0625DACD820067AB87 /* flower06.Red roses.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AF425DACD820067AB87 /* flower06.Red roses.jpg */; };
+		2C1D0B0725DACD820067AB87 /* flower14.Orange tulips at dawn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AF525DACD820067AB87 /* flower14.Orange tulips at dawn.jpg */; };
+		2C1D0B0825DACD820067AB87 /* flower08.Spring apricot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AF625DACD820067AB87 /* flower08.Spring apricot.jpg */; };
+		2C1D0B0925DACD820067AB87 /* flower03.Vase of purple roses.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AF725DACD820067AB87 /* flower03.Vase of purple roses.jpg */; };
+		2C1D0B0A25DACD820067AB87 /* flower18.Person lifting yellow daisy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AF825DACD820067AB87 /* flower18.Person lifting yellow daisy.jpg */; };
+		2C1D0B0B25DACD820067AB87 /* flower10.Pink flowers in vase.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AF925DACD820067AB87 /* flower10.Pink flowers in vase.jpg */; };
+		2C1D0B0C25DACD820067AB87 /* flower07.Peonies in bunch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AFA25DACD820067AB87 /* flower07.Peonies in bunch.jpg */; };
+		2C1D0B0D25DACD820067AB87 /* flower17.Person holding sunflowers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AFB25DACD820067AB87 /* flower17.Person holding sunflowers.jpg */; };
+		2C1D0B0E25DACD820067AB87 /* flower02.Bunch of assorted flowers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AFC25DACD820067AB87 /* flower02.Bunch of assorted flowers.jpg */; };
+		2C1D0B0F25DACD820067AB87 /* flower09.Blue peonies.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AFD25DACD820067AB87 /* flower09.Blue peonies.jpg */; };
+		2C1D0B1025DACD820067AB87 /* flower13.Man with pot of assorted flowers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AFE25DACD820067AB87 /* flower13.Man with pot of assorted flowers.jpg */; };
+		2C1D0B1125DACD820067AB87 /* flower15.Single sunflower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0AFF25DACD820067AB87 /* flower15.Single sunflower.jpg */; };
+		2C1D0B1225DACD820067AB87 /* flower12.Bunch of pink flowers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0B0025DACD820067AB87 /* flower12.Bunch of pink flowers.jpg */; };
+		2C1D0B1325DACD820067AB87 /* flower11.Man with white flower bub.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0B0125DACD820067AB87 /* flower11.Man with white flower bub.jpg */; };
+		2C1D0B1425DACD820067AB87 /* flower05.Assorted flowers in bunch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0B0225DACD820067AB87 /* flower05.Assorted flowers in bunch.jpg */; };
+		2C1D0B1525DACD820067AB87 /* flower04.Purple jungle geranium.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0B0325DACD820067AB87 /* flower04.Purple jungle geranium.jpg */; };
+		2C1D0B1625DACD820067AB87 /* flower16.Garden of roses.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0B0425DACD820067AB87 /* flower16.Garden of roses.jpg */; };
+		2C1D0B1725DACD820067AB87 /* flower01.Box of assorted flowers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0B0525DACD820067AB87 /* flower01.Box of assorted flowers.jpg */; };
 		2C437DDE25DA050400F43C2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C437DDD25DA050400F43C2D /* AppDelegate.swift */; };
 		2C437DE025DA050400F43C2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C437DDF25DA050400F43C2D /* SceneDelegate.swift */; };
 		2C437DE225DA050400F43C2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C437DE125DA050400F43C2D /* ViewController.swift */; };
@@ -14,29 +32,27 @@
 		2C437DE725DA050700F43C2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DE625DA050700F43C2D /* Assets.xcassets */; };
 		2C437DEA25DA050700F43C2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DE825DA050700F43C2D /* LaunchScreen.storyboard */; };
 		2C437DF325DA061E00F43C2D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C437DF225DA061E00F43C2D /* DetailViewController.swift */; };
-		2C437E0A25DA072300F43C2D /* flower7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DF625DA072300F43C2D /* flower7.jpg */; };
-		2C437E0B25DA072300F43C2D /* flower6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DF725DA072300F43C2D /* flower6.jpg */; };
-		2C437E0C25DA072300F43C2D /* flower4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DF825DA072300F43C2D /* flower4.jpg */; };
-		2C437E0D25DA072300F43C2D /* flower5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DF925DA072300F43C2D /* flower5.jpg */; };
-		2C437E0E25DA072300F43C2D /* flower1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DFA25DA072300F43C2D /* flower1.jpg */; };
-		2C437E0F25DA072300F43C2D /* flower2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DFB25DA072300F43C2D /* flower2.jpg */; };
-		2C437E1025DA072300F43C2D /* flower3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DFC25DA072300F43C2D /* flower3.jpg */; };
-		2C437E1125DA072300F43C2D /* flower20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DFD25DA072300F43C2D /* flower20.jpg */; };
-		2C437E1225DA072300F43C2D /* flower19.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DFE25DA072300F43C2D /* flower19.jpg */; };
-		2C437E1325DA072300F43C2D /* flower18.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437DFF25DA072300F43C2D /* flower18.jpg */; };
-		2C437E1425DA072300F43C2D /* flower16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0025DA072300F43C2D /* flower16.jpg */; };
-		2C437E1525DA072300F43C2D /* flower17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0125DA072300F43C2D /* flower17.jpg */; };
-		2C437E1625DA072300F43C2D /* flower15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0225DA072300F43C2D /* flower15.jpg */; };
-		2C437E1725DA072300F43C2D /* flower14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0325DA072300F43C2D /* flower14.jpg */; };
-		2C437E1825DA072300F43C2D /* flower10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0425DA072300F43C2D /* flower10.jpg */; };
-		2C437E1925DA072300F43C2D /* flower11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0525DA072300F43C2D /* flower11.jpg */; };
-		2C437E1A25DA072300F43C2D /* flower13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0625DA072300F43C2D /* flower13.jpg */; };
-		2C437E1B25DA072300F43C2D /* flower12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0725DA072300F43C2D /* flower12.jpg */; };
-		2C437E1C25DA072300F43C2D /* flower8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0825DA072300F43C2D /* flower8.jpg */; };
-		2C437E1D25DA072300F43C2D /* flower9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C437E0925DA072300F43C2D /* flower9.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C1D0AF425DACD820067AB87 /* flower06.Red roses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower06.Red roses.jpg"; sourceTree = "<group>"; };
+		2C1D0AF525DACD820067AB87 /* flower14.Orange tulips at dawn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower14.Orange tulips at dawn.jpg"; sourceTree = "<group>"; };
+		2C1D0AF625DACD820067AB87 /* flower08.Spring apricot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower08.Spring apricot.jpg"; sourceTree = "<group>"; };
+		2C1D0AF725DACD820067AB87 /* flower03.Vase of purple roses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower03.Vase of purple roses.jpg"; sourceTree = "<group>"; };
+		2C1D0AF825DACD820067AB87 /* flower18.Person lifting yellow daisy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower18.Person lifting yellow daisy.jpg"; sourceTree = "<group>"; };
+		2C1D0AF925DACD820067AB87 /* flower10.Pink flowers in vase.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower10.Pink flowers in vase.jpg"; sourceTree = "<group>"; };
+		2C1D0AFA25DACD820067AB87 /* flower07.Peonies in bunch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower07.Peonies in bunch.jpg"; sourceTree = "<group>"; };
+		2C1D0AFB25DACD820067AB87 /* flower17.Person holding sunflowers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower17.Person holding sunflowers.jpg"; sourceTree = "<group>"; };
+		2C1D0AFC25DACD820067AB87 /* flower02.Bunch of assorted flowers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower02.Bunch of assorted flowers.jpg"; sourceTree = "<group>"; };
+		2C1D0AFD25DACD820067AB87 /* flower09.Blue peonies.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower09.Blue peonies.jpg"; sourceTree = "<group>"; };
+		2C1D0AFE25DACD820067AB87 /* flower13.Man with pot of assorted flowers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower13.Man with pot of assorted flowers.jpg"; sourceTree = "<group>"; };
+		2C1D0AFF25DACD820067AB87 /* flower15.Single sunflower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower15.Single sunflower.jpg"; sourceTree = "<group>"; };
+		2C1D0B0025DACD820067AB87 /* flower12.Bunch of pink flowers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower12.Bunch of pink flowers.jpg"; sourceTree = "<group>"; };
+		2C1D0B0125DACD820067AB87 /* flower11.Man with white flower bub.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower11.Man with white flower bub.jpg"; sourceTree = "<group>"; };
+		2C1D0B0225DACD820067AB87 /* flower05.Assorted flowers in bunch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower05.Assorted flowers in bunch.jpg"; sourceTree = "<group>"; };
+		2C1D0B0325DACD820067AB87 /* flower04.Purple jungle geranium.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower04.Purple jungle geranium.jpg"; sourceTree = "<group>"; };
+		2C1D0B0425DACD820067AB87 /* flower16.Garden of roses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower16.Garden of roses.jpg"; sourceTree = "<group>"; };
+		2C1D0B0525DACD820067AB87 /* flower01.Box of assorted flowers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower01.Box of assorted flowers.jpg"; sourceTree = "<group>"; };
 		2C437DDA25DA050400F43C2D /* Vintage Flower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vintage Flower.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C437DDD25DA050400F43C2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C437DDF25DA050400F43C2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,26 +62,6 @@
 		2C437DE925DA050700F43C2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C437DEB25DA050700F43C2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C437DF225DA061E00F43C2D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		2C437DF625DA072300F43C2D /* flower7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower7.jpg; sourceTree = "<group>"; };
-		2C437DF725DA072300F43C2D /* flower6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower6.jpg; sourceTree = "<group>"; };
-		2C437DF825DA072300F43C2D /* flower4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower4.jpg; sourceTree = "<group>"; };
-		2C437DF925DA072300F43C2D /* flower5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower5.jpg; sourceTree = "<group>"; };
-		2C437DFA25DA072300F43C2D /* flower1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower1.jpg; sourceTree = "<group>"; };
-		2C437DFB25DA072300F43C2D /* flower2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower2.jpg; sourceTree = "<group>"; };
-		2C437DFC25DA072300F43C2D /* flower3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower3.jpg; sourceTree = "<group>"; };
-		2C437DFD25DA072300F43C2D /* flower20.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower20.jpg; sourceTree = "<group>"; };
-		2C437DFE25DA072300F43C2D /* flower19.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower19.jpg; sourceTree = "<group>"; };
-		2C437DFF25DA072300F43C2D /* flower18.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower18.jpg; sourceTree = "<group>"; };
-		2C437E0025DA072300F43C2D /* flower16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower16.jpg; sourceTree = "<group>"; };
-		2C437E0125DA072300F43C2D /* flower17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower17.jpg; sourceTree = "<group>"; };
-		2C437E0225DA072300F43C2D /* flower15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower15.jpg; sourceTree = "<group>"; };
-		2C437E0325DA072300F43C2D /* flower14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower14.jpg; sourceTree = "<group>"; };
-		2C437E0425DA072300F43C2D /* flower10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower10.jpg; sourceTree = "<group>"; };
-		2C437E0525DA072300F43C2D /* flower11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower11.jpg; sourceTree = "<group>"; };
-		2C437E0625DA072300F43C2D /* flower13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower13.jpg; sourceTree = "<group>"; };
-		2C437E0725DA072300F43C2D /* flower12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower12.jpg; sourceTree = "<group>"; };
-		2C437E0825DA072300F43C2D /* flower8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower8.jpg; sourceTree = "<group>"; };
-		2C437E0925DA072300F43C2D /* flower9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower9.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +75,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C1D0AF325DACD820067AB87 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				2C1D0B0525DACD820067AB87 /* flower01.Box of assorted flowers.jpg */,
+				2C1D0AFC25DACD820067AB87 /* flower02.Bunch of assorted flowers.jpg */,
+				2C1D0AF725DACD820067AB87 /* flower03.Vase of purple roses.jpg */,
+				2C1D0B0325DACD820067AB87 /* flower04.Purple jungle geranium.jpg */,
+				2C1D0B0225DACD820067AB87 /* flower05.Assorted flowers in bunch.jpg */,
+				2C1D0AF425DACD820067AB87 /* flower06.Red roses.jpg */,
+				2C1D0AFA25DACD820067AB87 /* flower07.Peonies in bunch.jpg */,
+				2C1D0AF625DACD820067AB87 /* flower08.Spring apricot.jpg */,
+				2C1D0AFD25DACD820067AB87 /* flower09.Blue peonies.jpg */,
+				2C1D0AF925DACD820067AB87 /* flower10.Pink flowers in vase.jpg */,
+				2C1D0B0125DACD820067AB87 /* flower11.Man with white flower bub.jpg */,
+				2C1D0B0025DACD820067AB87 /* flower12.Bunch of pink flowers.jpg */,
+				2C1D0AFE25DACD820067AB87 /* flower13.Man with pot of assorted flowers.jpg */,
+				2C1D0AF525DACD820067AB87 /* flower14.Orange tulips at dawn.jpg */,
+				2C1D0AFF25DACD820067AB87 /* flower15.Single sunflower.jpg */,
+				2C1D0B0425DACD820067AB87 /* flower16.Garden of roses.jpg */,
+				2C1D0AFB25DACD820067AB87 /* flower17.Person holding sunflowers.jpg */,
+				2C1D0AF825DACD820067AB87 /* flower18.Person lifting yellow daisy.jpg */,
+			);
+			path = Pictures;
+			sourceTree = "<group>";
+		};
 		2C437DD125DA050400F43C2D = {
 			isa = PBXGroup;
 			children = (
@@ -106,36 +127,9 @@
 				2C437DE625DA050700F43C2D /* Assets.xcassets */,
 				2C437DE825DA050700F43C2D /* LaunchScreen.storyboard */,
 				2C437DEB25DA050700F43C2D /* Info.plist */,
-				2C437DF525DA072300F43C2D /* Pictures */,
+				2C1D0AF325DACD820067AB87 /* Pictures */,
 			);
 			path = "Vintage Flower";
-			sourceTree = "<group>";
-		};
-		2C437DF525DA072300F43C2D /* Pictures */ = {
-			isa = PBXGroup;
-			children = (
-				2C437DF625DA072300F43C2D /* flower7.jpg */,
-				2C437DF725DA072300F43C2D /* flower6.jpg */,
-				2C437DF825DA072300F43C2D /* flower4.jpg */,
-				2C437DF925DA072300F43C2D /* flower5.jpg */,
-				2C437DFA25DA072300F43C2D /* flower1.jpg */,
-				2C437DFB25DA072300F43C2D /* flower2.jpg */,
-				2C437DFC25DA072300F43C2D /* flower3.jpg */,
-				2C437DFD25DA072300F43C2D /* flower20.jpg */,
-				2C437DFE25DA072300F43C2D /* flower19.jpg */,
-				2C437DFF25DA072300F43C2D /* flower18.jpg */,
-				2C437E0025DA072300F43C2D /* flower16.jpg */,
-				2C437E0125DA072300F43C2D /* flower17.jpg */,
-				2C437E0225DA072300F43C2D /* flower15.jpg */,
-				2C437E0325DA072300F43C2D /* flower14.jpg */,
-				2C437E0425DA072300F43C2D /* flower10.jpg */,
-				2C437E0525DA072300F43C2D /* flower11.jpg */,
-				2C437E0625DA072300F43C2D /* flower13.jpg */,
-				2C437E0725DA072300F43C2D /* flower12.jpg */,
-				2C437E0825DA072300F43C2D /* flower8.jpg */,
-				2C437E0925DA072300F43C2D /* flower9.jpg */,
-			);
-			path = Pictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,29 +189,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C437E1625DA072300F43C2D /* flower15.jpg in Resources */,
-				2C437E1225DA072300F43C2D /* flower19.jpg in Resources */,
-				2C437E1A25DA072300F43C2D /* flower13.jpg in Resources */,
-				2C437E0A25DA072300F43C2D /* flower7.jpg in Resources */,
-				2C437E0B25DA072300F43C2D /* flower6.jpg in Resources */,
-				2C437E0E25DA072300F43C2D /* flower1.jpg in Resources */,
+				2C1D0B0B25DACD820067AB87 /* flower10.Pink flowers in vase.jpg in Resources */,
+				2C1D0B1425DACD820067AB87 /* flower05.Assorted flowers in bunch.jpg in Resources */,
+				2C1D0B1725DACD820067AB87 /* flower01.Box of assorted flowers.jpg in Resources */,
+				2C1D0B0825DACD820067AB87 /* flower08.Spring apricot.jpg in Resources */,
+				2C1D0B1225DACD820067AB87 /* flower12.Bunch of pink flowers.jpg in Resources */,
+				2C1D0B1325DACD820067AB87 /* flower11.Man with white flower bub.jpg in Resources */,
 				2C437DEA25DA050700F43C2D /* LaunchScreen.storyboard in Resources */,
-				2C437E1D25DA072300F43C2D /* flower9.jpg in Resources */,
-				2C437E1025DA072300F43C2D /* flower3.jpg in Resources */,
-				2C437E1925DA072300F43C2D /* flower11.jpg in Resources */,
-				2C437E1B25DA072300F43C2D /* flower12.jpg in Resources */,
-				2C437E1125DA072300F43C2D /* flower20.jpg in Resources */,
-				2C437E1425DA072300F43C2D /* flower16.jpg in Resources */,
-				2C437E0C25DA072300F43C2D /* flower4.jpg in Resources */,
-				2C437E0D25DA072300F43C2D /* flower5.jpg in Resources */,
-				2C437E0F25DA072300F43C2D /* flower2.jpg in Resources */,
-				2C437E1325DA072300F43C2D /* flower18.jpg in Resources */,
-				2C437E1525DA072300F43C2D /* flower17.jpg in Resources */,
-				2C437E1C25DA072300F43C2D /* flower8.jpg in Resources */,
-				2C437E1725DA072300F43C2D /* flower14.jpg in Resources */,
-				2C437E1825DA072300F43C2D /* flower10.jpg in Resources */,
 				2C437DE725DA050700F43C2D /* Assets.xcassets in Resources */,
+				2C1D0B1025DACD820067AB87 /* flower13.Man with pot of assorted flowers.jpg in Resources */,
+				2C1D0B0C25DACD820067AB87 /* flower07.Peonies in bunch.jpg in Resources */,
+				2C1D0B0D25DACD820067AB87 /* flower17.Person holding sunflowers.jpg in Resources */,
+				2C1D0B0925DACD820067AB87 /* flower03.Vase of purple roses.jpg in Resources */,
+				2C1D0B0725DACD820067AB87 /* flower14.Orange tulips at dawn.jpg in Resources */,
+				2C1D0B1125DACD820067AB87 /* flower15.Single sunflower.jpg in Resources */,
+				2C1D0B1625DACD820067AB87 /* flower16.Garden of roses.jpg in Resources */,
+				2C1D0B0E25DACD820067AB87 /* flower02.Bunch of assorted flowers.jpg in Resources */,
 				2C437DE525DA050400F43C2D /* Main.storyboard in Resources */,
+				2C1D0B1525DACD820067AB87 /* flower04.Purple jungle geranium.jpg in Resources */,
+				2C1D0B0625DACD820067AB87 /* flower06.Red roses.jpg in Resources */,
+				2C1D0B0F25DACD820067AB87 /* flower09.Blue peonies.jpg in Resources */,
+				2C1D0B0A25DACD820067AB87 /* flower18.Person lifting yellow daisy.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
