@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self // assign the current scene to physics world's contact delegate
         
         // DEFINE THE GAME BACKGROUND
-        let background = SKSpriteNode(imageNamed: "background_underwater.jpg")
+        let background = SKSpriteNode(imageNamed: "background_ocean.jpg")
         background.position = CGPoint(x: 512, y: 384)   // half the scene size
         background.blendMode = .replace // ignore any alpha values
         background.zPosition = -1   // place the background below everything else
