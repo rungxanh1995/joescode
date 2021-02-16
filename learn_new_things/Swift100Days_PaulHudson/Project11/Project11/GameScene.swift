@@ -37,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self // assign the current scene to physics world's contact delegate
         
         // DEFINE THE GAME BACKGROUND
-        let background = SKSpriteNode(imageNamed: "background.jpg")
+        let background = SKSpriteNode(imageNamed: "background_underwater.jpg")
         background.position = CGPoint(x: 512, y: 384)   // half the scene size
         background.blendMode = .replace // ignore any alpha values
         background.zPosition = -1   // place the background below everything else
@@ -165,6 +165,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // DEFINE HOW THE BALL IS REMOVED FROM THE NODE TREE
     func destroy(ball: SKNode) {
+        if let bubbles = SKEmitterNode(fileNamed: "Bubbles") {  // create bubbles effect
+            bubbles.position = ball.position  // the position where the ball would be removed
+            addChild(bubbles)
+        }
         ball.removeFromParent()
     }
     
