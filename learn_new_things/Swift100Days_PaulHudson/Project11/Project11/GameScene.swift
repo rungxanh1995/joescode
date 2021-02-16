@@ -10,6 +10,8 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var ballNames: [String] = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+    
     var scoreLabel: SKLabelNode!    // force unwrapped, this score label to be defined in didMove()
     var score = 0 {
         didSet {
@@ -137,7 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     addChild(box)
                 } else {
                     // create the balls
-                    let ball = SKSpriteNode(imageNamed: "ballRed")
+                    let randomInt = Int.random(in: 0..<ballNames.count)
+                    let ballName = ballNames[randomInt] // generate random-colored balls
+                    
+                    let ball = SKSpriteNode(imageNamed: "\(ballName)")
                     ball.name = "ball"  // name this node
                     ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0) // add a circular physics body to the ball with radius of half the image width
                     ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask   // let it tell about every collision that happens to the ball
