@@ -12,10 +12,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var ballNames: [String] = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
     
-    var scoreLabel: SKLabelNode!    // force unwrapped, this score label to be defined in didMove()
-    var score = 0 {
+    var ballsLabel: SKLabelNode!    // force unwrapped, this balls label to be defined in didMove()
+    var balls = 5 {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            ballsLabel.text = "Balls: \(balls)"
+        }
+    }
+    
+    var boxesLabel: SKLabelNode!    // force unwrapped, this balls label to be defined in didMove()
+    var boxCount = 0 {
+        didSet {
+            boxesLabel.text = "Boxes: \(boxCount)"
         }
     }
     
@@ -27,6 +34,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 editingLabel.text = "Edit"  // label text hints to "Edit" while NOT in editing mode
             }
+        }
+    }
+    
+    var gameResultLabel: SKLabelNode!
+    var gameResult = "" {
+        didSet {
+            gameResultLabel.text = "\(gameResult)"
         }
     }
     
@@ -58,18 +72,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBouncer(at: CGPoint(x: 768, y: 0))
         makeBouncer(at: CGPoint(x: 1024, y: 0))
         
-        // DEFINE THE SCORE LABEL
-        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        scoreLabel.text = "Score: 0"    // initial value
-        scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.position = CGPoint(x: 980, y: 700)
-        addChild(scoreLabel)
+        // DEFINE THE BALLS LABEL
+        ballsLabel = SKLabelNode(fontNamed: "Chalkduster")
+        ballsLabel.text = "Balls: 5"    // initial value
+        ballsLabel.horizontalAlignmentMode = .right
+        ballsLabel.position = CGPoint(x: 980, y: 700)
+        addChild(ballsLabel)
+        
+        // DEFINE THE BOXES LABEL
+        boxesLabel = SKLabelNode(fontNamed: "Chalkduster")
+        boxesLabel.text = "Boxes: 0"    // initial value
+        boxesLabel.horizontalAlignmentMode = .right
+        boxesLabel.position = CGPoint(x: 980, y: 660)
+        addChild(boxesLabel)
         
         // DEFINE THE EDITING LABEL
         editingLabel = SKLabelNode(fontNamed: "Chalkduster")
         editingLabel.text = "Edit"
         editingLabel.position = CGPoint(x: 80, y: 700)
         addChild(editingLabel)
+        
+        // DEFINE THE GAME RESULT LABEL
+        gameResultLabel = SKLabelNode(fontNamed: "Chalkduster")
+        gameResultLabel.text = ""
+        gameResultLabel.fontSize = 80
+        gameResultLabel.position = CGPoint(x: 512, y: 384)
+        addChild(gameResultLabel)
     }
     
     
@@ -127,9 +155,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 editingMode.toggle()    // toggle means change to true if currently false, and vice versa
             } else {
                 if editingMode {
+                    gameResult = "" // hide the game result if in edit mode
+                    
                     // create a box
                     let size = CGSize(width: Int.random(in: 32...128), height: 16)
                     let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1), size: size)
+                    box.name = "box"    // name this node
                     box.zRotation = CGFloat.random(in: 0...3)   // let each box rotates randomly
                     box.position = location // create the box at that touch point
                     
@@ -137,6 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     box.physicsBody?.isDynamic = false
                     
                     addChild(box)
+                    boxCount += 1
                 } else {
                     // create the balls
                     let randomInt = Int.random(in: 0..<ballNames.count)
@@ -149,32 +181,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.physicsBody?.restitution = 0.4 // change its bounciness within 0-1 range
                     ball.position = location // place the ball where the touch happened
                     ball.position.y = CGFloat(768)  // let the ball fall from top of the screen
-                    addChild(ball)   // ball is also a node, add it to the scene
+                    
+                    // MAINLINE DECISION TREE for adding balls and showing game result
+                    if balls > 0 {  // allow adding more balls upon a touch only when still having balls left
+                        if boxCount > 0 {
+                            gameResult = ""
+                        } else {    // when no boxes onscreen but still have balls
+                            gameResult = "Add boxes to play"
+                        }
+                        addChild(ball)   // add the ball to the scene at that touch
+                    } else {    // otherwise if run out of balls, regardless of boxes
+                        gameResult = "GAME OVER"
+                    }
                 }
             }
         }
     }
     
     
-    // DEFINE A COLLISION BETWEEN THE BALL AND OTHER OBJECTS WOULD WORK
-    func collisionBetween(ball: SKNode, object: SKNode) {
-        if object.name == "good" {
-            destroy(ball: ball) // call the destroy method defined below
-            score += 1
-        } else if object.name == "bad" {
-            destroy(ball: ball)
-            score -= 1
+    // DEFINE HOW AN ITEM IS REMOVED FROM THE NODE TREE
+    func destroy(item: SKNode) {
+        if let bubbles = SKEmitterNode(fileNamed: "Bubbles") {  // create bubbles effect
+            bubbles.position = item.position  // the position where the ball would be removed
+            addChild(bubbles)
         }
+        item.removeFromParent()
     }
     
     
-    // DEFINE HOW THE BALL IS REMOVED FROM THE NODE TREE
-    func destroy(ball: SKNode) {
-        if let bubbles = SKEmitterNode(fileNamed: "Bubbles") {  // create bubbles effect
-            bubbles.position = ball.position  // the position where the ball would be removed
-            addChild(bubbles)
+    // DEFINE A COLLISION BETWEEN AN ITEM AND OTHER OBJECTS WOULD WORK
+    func collisionBetween(item: SKNode, anotherItem: SKNode) {
+        if anotherItem.name == "good" {
+            destroy(item: item) // call the destroy method defined below
+            balls += 1
+        } else if anotherItem.name == "bad" {
+            destroy(item: item)
+            balls -= 1
+        } else if anotherItem.name == "box" {
+            destroy(item: anotherItem)
+            boxCount -= 1
         }
-        ball.removeFromParent()
     }
     
     
@@ -186,10 +232,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         
-        if nodeA.name == "ball" {
-            collisionBetween(ball: nodeA, object: nodeB)
-        } else if nodeB.name == "ball" {
-            collisionBetween(ball: nodeB, object: nodeA)
+        // decide how the ball or box should be removed upon collision
+        if nodeA.name == "ball" || nodeB.name == "box" {
+            collisionBetween(item: nodeA, anotherItem: nodeB)
+        } else if nodeB.name == "ball" || nodeA.name == "box" {
+            collisionBetween(item: nodeB, anotherItem: nodeA)
         }
     }
 }
