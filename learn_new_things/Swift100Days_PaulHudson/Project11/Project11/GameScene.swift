@@ -190,7 +190,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             gameResult = "Add boxes to play"
                         }
                         addChild(ball)   // add the ball to the scene at that touch
-                    } else {    // otherwise if run out of balls, regardless of boxes
+                        balls -= 1  // decrement the number of balls left
+                    }
+                    else {    // otherwise if run out of balls, regardless of boxes
                         gameResult = "GAME OVER"
                     }
                 }
@@ -213,10 +215,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collisionBetween(item: SKNode, anotherItem: SKNode) {
         if anotherItem.name == "good" {
             destroy(item: item) // call the destroy method defined below
-            balls += 1
+            balls += 1  // reward 1 more ball
         } else if anotherItem.name == "bad" {
             destroy(item: item)
-            balls -= 1
         } else if anotherItem.name == "box" {
             destroy(item: anotherItem)
             boxCount -= 1
