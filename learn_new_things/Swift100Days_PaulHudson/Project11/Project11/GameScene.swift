@@ -37,6 +37,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var ballRewardedLabel: SKLabelNode!
+    var ballRewarded = "" {
+        didSet {
+            ballRewardedLabel.text = "\(ballRewarded)"
+        }
+    }
+    
     var gameResultLabel: SKLabelNode!
     var gameResult = "" {
         didSet {
@@ -89,12 +96,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // DEFINE THE EDITING LABEL
         editingLabel = SKLabelNode(fontNamed: "Chalkduster")
         editingLabel.text = "Edit"
-        editingLabel.position = CGPoint(x: 80, y: 700)
+        editingLabel.horizontalAlignmentMode = .left
+        editingLabel.position = CGPoint(x: 44, y: 700)
         addChild(editingLabel)
+        
+        // DEFINE THE BALL REWARDED LABEL
+        ballRewardedLabel = SKLabelNode(fontNamed: "Chalkduster")
+        ballRewardedLabel.horizontalAlignmentMode = .left
+        ballRewardedLabel.position = CGPoint(x: 44, y: 660)
+        addChild(ballRewardedLabel)
         
         // DEFINE THE GAME RESULT LABEL
         gameResultLabel = SKLabelNode(fontNamed: "Chalkduster")
-        gameResultLabel.text = ""
         gameResultLabel.fontSize = 80
         gameResultLabel.position = CGPoint(x: 512, y: 384)
         addChild(gameResultLabel)
@@ -155,7 +168,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 editingMode.toggle()    // toggle means change to true if currently false, and vice versa
             } else {
                 if editingMode {
+                    // hide some obstructive text
                     gameResult = "" // hide the game result if in edit mode
+                    ballRewarded = ""   // display nothing if in edit mode
                     
                     // create a box
                     let size = CGSize(width: Int.random(in: 32...128), height: 16)
@@ -191,6 +206,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         addChild(ball)   // add the ball to the scene at that touch
                         balls -= 1  // decrement the number of balls left
+                        ballRewarded = ""   // display nothing when a ball is created
                     }
                     else {    // otherwise if run out of balls, regardless of boxes
                         gameResult = "GAME OVER"
@@ -216,8 +232,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if anotherItem.name == "good" {
             destroy(item: item) // call the destroy method defined below
             balls += 1  // reward 1 more ball
+            ballRewarded = "Free ball 🥳";  // cheer user up
         } else if anotherItem.name == "bad" {
             destroy(item: item)
+            ballRewarded = "Oops 😬";   // play it better bud
         } else if anotherItem.name == "box" {
             destroy(item: anotherItem)
             boxCount -= 1
