@@ -10,6 +10,11 @@ import UIKit
 class ViewController: UITableViewController {
     
     var flowers = [String]()
+	var flowerViewsCount = [String: Int]()
+	
+	let mainQ = DispatchQueue.main
+	let globalQ = DispatchQueue.global()
+	let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +27,7 @@ class ViewController: UITableViewController {
         let items = try! fm.contentsOfDirectory(atPath: path)
         
 
-        DispatchQueue.global().async { [weak self] in
+        globalQ.async { [weak self] in
             for item in items {
                 if item.hasPrefix("flower") {
                     self?.flowers.append(item)
@@ -30,6 +35,9 @@ class ViewController: UITableViewController {
             }
             self?.flowers.sort()
         }
+		
+		// UNPACK LAST SAVED IMAGE VIEW COUNT
+		flowerViewsCount = defaults.object(forKey: "SavedCount") as? [String: Int] ?? [String: Int]()
 
         tableView.reloadData()
     }
@@ -45,7 +53,9 @@ class ViewController: UITableViewController {
         let firstImageName = String(flowers[indexPath.row].getFileName().split(separator: ".")[0].dropFirst(6)) // get the 1st item from the split array
         let lastImageName = String(flowers[indexPath.row].getFileName().dropFirst(9))
         let imageName = "\(firstImageName).\t\(lastImageName)"
+		
         cell.textLabel?.text = imageName
+		cell.detailTextLabel?.text = "Views: \(flowerViewsCount[flowers[indexPath.row], default: 0])"
         
         return cell
     }
@@ -55,11 +65,24 @@ class ViewController: UITableViewController {
             vc.selectedImage = flowers[indexPath.row]
             vc.selectedPosition = indexPath.row + 1
             vc.totalNumberOfImages = flowers.count
-            
-            navigationController?.pushViewController(vc, animated: true)
+			
+			flowerViewsCount[flowers[indexPath.row], default: 0] += 1	// add value to the dict
+			
+			globalQ.async { [weak self] in
+				self?.saveViewsCount()
+				
+				self?.mainQ.async {
+					self?.navigationController?.pushViewController(vc, animated: true)
+					self?.tableView.reloadRows(at: [indexPath], with: .none)
+				}
+			}
         }
     }
 
+	// METHOD TO SAVE USERDEFAULTS DATA
+	func saveViewsCount() {
+		defaults.set(flowerViewsCount, forKey: "SavedCount")
+	}
 }
 
 
