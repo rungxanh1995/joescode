@@ -24,20 +24,31 @@ class ViewController: UITableViewController {
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
 		
+		globalQueue.async { [weak self] in
+			self?.loadImages()
+		}
+		
+		tableView.reloadData()
+	}
+	
+	func loadImages() {
 		let fm = FileManager.default
 		let path = Bundle.main.resourcePath!
 		let items = try! fm.contentsOfDirectory(atPath: path)
 		
-		globalQueue.async { [weak self] in
-			for item in items {
-				if item.hasPrefix("nssl") {
-					self?.pictures.append(item)
-				}
+		for item in items {
+			if item.hasPrefix("nssl") {
+				pictures.append(item)
 			}
-			self?.pictures.sort()
 		}
 		
-		tableView.reloadData()
+		pictures.sort()
+	}
+	
+	@objc func shareTapped() {
+		let activityVC = UIActivityViewController(activityItems: ["Check out this awesome storm viewer app"], applicationActivities: [])
+		activityVC.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+		present(activityVC, animated: true)
 	}
     
     // Set how many rows to appear in table view
@@ -79,12 +90,6 @@ class ViewController: UITableViewController {
         }
     }
     
-    // Method to recommend app to other people via sharing button
-    @objc func shareTapped() {
-        let activityVC = UIActivityViewController(activityItems: ["Check out this awesome storm viewer app"], applicationActivities: [])
-        activityVC.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(activityVC, animated: true)
-    }
 }
 
 
