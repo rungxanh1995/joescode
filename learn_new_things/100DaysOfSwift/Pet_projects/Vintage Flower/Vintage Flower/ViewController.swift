@@ -12,8 +12,8 @@ class ViewController: UITableViewController {
     var flowers = [String]()
 	var flowerViewsCount = [String: Int]()
 	
-	let mainQ = DispatchQueue.main
-	let globalQ = DispatchQueue.global()
+	let mainQueue = DispatchQueue.main
+	let globalQueue = DispatchQueue.global()
 	let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
@@ -22,25 +22,33 @@ class ViewController: UITableViewController {
         title = "Vintage Flowers 🌺"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        let items = try! fm.contentsOfDirectory(atPath: path)
-        
-
-        globalQ.async { [weak self] in
-            for item in items {
-                if item.hasPrefix("flower") {
-                    self?.flowers.append(item)
-                }
-            }
-            self?.flowers.sort()
-        }
+		globalQueue.async { [weak self] in
+			self?.loadImages()
+		}
 		
 		// UNPACK LAST SAVED IMAGE VIEW COUNT
 		flowerViewsCount = defaults.object(forKey: "SavedCount") as? [String: Int] ?? [String: Int]()
 
         tableView.reloadData()
     }
+	
+	func loadImages() {
+		let fm = FileManager.default
+		let path = Bundle.main.resourcePath!
+		let items = try! fm.contentsOfDirectory(atPath: path)
+		
+		for item in items {
+			if item.hasPrefix("flower") {
+				flowers.append(item)
+			}
+		}
+		flowers.sort()
+	}
+	
+	// METHOD TO SAVE USERDEFAULTS DATA
+	func saveViewsCount() {
+		defaults.set(flowerViewsCount, forKey: "SavedCount")
+	}
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return flowers.count
@@ -68,21 +76,16 @@ class ViewController: UITableViewController {
 			
 			flowerViewsCount[flowers[indexPath.row], default: 0] += 1	// add value to the dict
 			
-			globalQ.async { [weak self] in
+			globalQueue.async { [weak self] in
 				self?.saveViewsCount()
 				
-				self?.mainQ.async {
+				self?.mainQueue.async {
 					self?.navigationController?.pushViewController(vc, animated: true)
-					self?.tableView.reloadRows(at: [indexPath], with: .none)
+					self?.tableView.reloadRows(at: [indexPath], with: .none)	// update views count live
 				}
 			}
         }
     }
-
-	// METHOD TO SAVE USERDEFAULTS DATA
-	func saveViewsCount() {
-		defaults.set(flowerViewsCount, forKey: "SavedCount")
-	}
 }
 
 
