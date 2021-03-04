@@ -23,20 +23,8 @@ class ViewController: UITableViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))	// a share button
         
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        let items = try! fm.contentsOfDirectory(atPath: path)
-        
 		globalQueue.async { [weak self] in
-            // For loop iterates through each item found in the app contents
-            for item in items {
-                // Work in filenames that have prefix "nssl" only {
-                if item.hasPrefix("nssl") {
-                    self?.pictures.append(item)	// Add that filename to the initial empty array
-                    
-                }
-            }
-			self?.pictures.sort()	// Sort filenames in root view screen
+			self?.loadImages()
         }
 		
 		// DEFINE USERDEFAULTS DATA UNPACKING
@@ -44,6 +32,21 @@ class ViewController: UITableViewController {
 		
         tableView.reloadData()
     }
+	
+	// METHOD TO LOAD THE IMAGES
+	func loadImages() {
+		let fm = FileManager.default
+		let path = Bundle.main.resourcePath!
+		let items = try! fm.contentsOfDirectory(atPath: path)
+		
+		for item in items {
+			if item.hasPrefix("nssl") {
+				pictures.append(item)
+			}
+		}
+		
+		pictures.sort()
+	}
     
     // SET HOW MANY ROWS TO APPEAR IN TABLE VIEW
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
