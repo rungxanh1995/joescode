@@ -7,16 +7,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Reminder List View Controller-->
         <scene sceneID="Hmx-VY-KLB">
             <objects>
-                <tableViewController id="e46-I4-cWl" sceneMemberID="viewController">
+                <tableViewController id="e46-I4-cWl" customClass="ReminderListViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="l6B-J3-fOz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="99" id="N8W-5j-atv">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderListCell" rowHeight="99" id="N8W-5j-atv" customClass="ReminderListCell" customModule="Today" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N8W-5j-atv" id="thv-f1-SNO">
@@ -30,6 +30,9 @@
                                                 <constraint firstAttribute="width" secondItem="6Fo-WB-ufs" secondAttribute="height" multiplier="1:1" id="bX5-nI-l8J"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="circle" catalog="system"/>
+                                            <connections>
+                                                <action selector="doneButtonTriggered:" destination="N8W-5j-atv" eventType="touchUpInside" id="DMr-fR-Sjz"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNo-BG-JZb">
                                             <rect key="frame" x="72" y="20" width="33" height="21"/>
@@ -56,6 +59,11 @@
                                         <constraint firstItem="01l-0I-YkB" firstAttribute="top" secondItem="aNo-BG-JZb" secondAttribute="bottom" constant="8" symbolic="YES" id="ygV-k3-CdJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="01l-0I-YkB" id="QHa-ee-tQa"/>
+                                    <outlet property="doneButton" destination="6Fo-WB-ufs" id="vOr-pL-dYe"/>
+                                    <outlet property="titleLabel" destination="aNo-BG-JZb" id="W9X-k2-9on"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
