@@ -8,13 +8,16 @@
 import UIKit
 
 class ReminderDetailViewController: UITableViewController {
+	typealias ReminderChangeAction = (Reminder) -> Void
 	
 	private var reminder: Reminder?
 	private var tempReminder: Reminder?
 	private var dataSource: UITableViewDataSource?
+	private var reminderChangeAction: ReminderChangeAction?
 	
-	func configure(with reminder: Reminder) {
+	func configure(with reminder: Reminder, changeAction: @escaping ReminderChangeAction) {
 		self.reminder = reminder
+		self.reminderChangeAction = changeAction
 	}
 	
 	override func viewDidLoad() {
@@ -40,6 +43,7 @@ class ReminderDetailViewController: UITableViewController {
 			if let tempReminder = tempReminder {
 				self.reminder = tempReminder
 				self.tempReminder = nil
+				reminderChangeAction?(tempReminder)
 				dataSource = ReminderDetailViewDataSource(reminder: tempReminder)
 			} else {
 				dataSource = ReminderDetailViewDataSource(reminder: reminder)
