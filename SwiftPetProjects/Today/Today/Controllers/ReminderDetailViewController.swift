@@ -13,16 +13,23 @@ class ReminderDetailViewController: UITableViewController {
 	private var reminder: Reminder?
 	private var tempReminder: Reminder?
 	private var dataSource: UITableViewDataSource?
-	private var reminderChangeAction: ReminderChangeAction?
+	private var reminderEditAction: ReminderChangeAction?
+	private var reminderAddAction: ReminderChangeAction?
+	private var isNew = false
 	
-	func configure(with reminder: Reminder, changeAction: @escaping ReminderChangeAction) {
+	func configure(with reminder: Reminder, isNew: Bool = false, addAction: ReminderChangeAction? = nil, editAction: ReminderChangeAction? = nil) {
 		self.reminder = reminder
-		self.reminderChangeAction = changeAction
+		self.isNew = isNew
+		self.reminderAddAction = addAction
+		self.reminderEditAction = editAction
+		if isViewLoaded {
+			setEditing(isNew, animated: false)
+		}
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setEditing(false, animated: false)
+		setEditing(isNew, animated: false)
 		navigationItem.setRightBarButton(editButtonItem, animated: false)
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: ReminderDetailEditDataSource.dateLabelCellIdentifier)
 	}
@@ -37,13 +44,13 @@ class ReminderDetailViewController: UITableViewController {
 				self.tempReminder = reminder
 				self.editButtonItem.isEnabled = true
 			})
-			navigationItem.title = NSLocalizedString("Edit Reminder", comment: "edit reminder nav title")
+			navigationItem.title = isNew ? NSLocalizedString("Add Reminder", comment: "add reiminder nav title") :  NSLocalizedString("Edit Reminder", comment: "edit reminder nav title")
 			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTriggered))
 		} else {
 			if let tempReminder = tempReminder {
 				self.reminder = tempReminder
 				self.tempReminder = nil
-				reminderChangeAction?(tempReminder)
+				reminderEditAction?(tempReminder)
 				dataSource = ReminderDetailViewDataSource(reminder: tempReminder)
 			} else {
 				dataSource = ReminderDetailViewDataSource(reminder: reminder)

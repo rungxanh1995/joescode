@@ -24,10 +24,10 @@ class ReminderListViewController: UITableViewController {
 			guard let reminder = reminderListDataSource?.reminder(at: rowIndex) else {
 				fatalError("Couldn't find data source for reminder list")
 			}
-			destination.configure(with: reminder) { reminder in
+			destination.configure(with: reminder, editAction: { reminder in
 				self.reminderListDataSource?.update(reminder, at: rowIndex)
 				self.tableView.reloadRows(at: [indexPath], with: .automatic)
-			}
+			})
 		}
 	}
 	
@@ -45,9 +45,9 @@ class ReminderListViewController: UITableViewController {
 		let storyboard = UIStoryboard(name: Self.mainStoryboardName, bundle: nil)
 		let detailViewController: ReminderDetailViewController = storyboard.instantiateViewController(identifier: Self.detailViewControllerIdentifier)
 		let reminder = Reminder(title: "New Reminder", dueDate: Date())
-		detailViewController.configure(with: reminder) { reminder in
+		detailViewController.configure(with: reminder, isNew: true, addAction: { reminder in
 			
-		}
+		})
 		let navigationController = UINavigationController(rootViewController: detailViewController)
 		present(navigationController, animated: true, completion: nil)
 	}
