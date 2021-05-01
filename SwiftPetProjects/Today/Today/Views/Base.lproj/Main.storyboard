@@ -82,13 +82,13 @@
         <scene sceneID="FbM-Ro-oDb">
             <objects>
                 <tableViewController id="PQ1-K5-uOI" customClass="ReminderDetailViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="USK-dN-bJs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="USK-dN-bJs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderDetailCell" textLabel="Z39-mj-W5m" style="IBUITableViewCellStyleDefault" id="6hl-xQ-AC6">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="49.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6hl-xQ-AC6" id="pKZ-SP-Kw9">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -105,14 +105,14 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTitleCell" id="x5E-wp-gp7" customClass="EditTitleCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="68" width="414" height="19.5"/>
+                                <rect key="frame" x="0.0" y="93" width="414" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5E-wp-gp7" id="H7f-SX-kwq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TextField" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-hq-Wmf">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="19.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="19"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -129,7 +129,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditDateCell" rowHeight="216" id="Zti-FZ-g70" customClass="EditDateCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="87.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zti-FZ-g70" id="E0A-1e-DrG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
@@ -151,14 +151,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditNotesCell" rowHeight="216" id="fnz-6s-Tfu" customClass="EditNotesCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="303.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="328" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fnz-6s-Tfu" id="jd2-fc-Jcx">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bDs-db-Q8P">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="216"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="194" id="pHr-J4-NMB"/>
@@ -170,9 +170,9 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="bDs-db-Q8P" secondAttribute="trailing" id="5bL-mA-tWY"/>
+                                        <constraint firstAttribute="trailing" secondItem="bDs-db-Q8P" secondAttribute="trailing" constant="20" symbolic="YES" id="5bL-mA-tWY"/>
                                         <constraint firstAttribute="bottom" secondItem="bDs-db-Q8P" secondAttribute="bottom" id="l8J-ry-vEO"/>
-                                        <constraint firstItem="bDs-db-Q8P" firstAttribute="leading" secondItem="jd2-fc-Jcx" secondAttribute="leading" id="lT6-Ql-lBo"/>
+                                        <constraint firstItem="bDs-db-Q8P" firstAttribute="leading" secondItem="jd2-fc-Jcx" secondAttribute="leading" constant="20" symbolic="YES" id="lT6-Ql-lBo"/>
                                         <constraint firstItem="bDs-db-Q8P" firstAttribute="top" secondItem="jd2-fc-Jcx" secondAttribute="top" id="pMA-Vd-SUf"/>
                                     </constraints>
                                 </tableViewCellContentView>
