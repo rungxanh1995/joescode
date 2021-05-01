@@ -1,5 +1,5 @@
 //
-//  ReminderDetailViewController.swift
+//  ReminderDetailViewDataSource.swift
 //  Today
 //
 //  Created by Joe Pham on 2021-04-30.
@@ -7,21 +7,37 @@
 
 import UIKit
 
-class ReminderDetailViewController: UITableViewController {
+class ReminderDetailViewDataSource: NSObject {
 	enum ReminderRow: Int, CaseIterable {
 		case title
 		case date
 		case time
 		case notes
 		
+		static let timeFormatter: DateFormatter = {
+			let formatter = DateFormatter()
+			formatter.dateStyle = .none
+			formatter.timeStyle = .short
+			return formatter
+		}()
+		
+		static let dateFormatter: DateFormatter = {
+			let formatter = DateFormatter()
+			formatter.dateStyle = .long
+			formatter.timeStyle = .none
+			return formatter
+		}()
+		
 		func displayText(for reminder: Reminder?) -> String? {
 			switch self {
 				case .title:
 					return reminder?.title
 				case .date:
-					return reminder?.dueDate.description
+					guard let date = reminder?.dueDate else { return nil }
+					return Self.dateFormatter.string(from: date)
 				case .time:
-					return reminder?.dueDate.description
+					guard let date = reminder?.dueDate else { return nil }
+					return Self.timeFormatter.string(from: date)
 				case .notes:
 					return reminder?.notes
 			}
@@ -41,21 +57,22 @@ class ReminderDetailViewController: UITableViewController {
 		}
 	}
 	
-	var reminder: Reminder?
+	private var reminder: Reminder
 	
-	func configure(with reminder: Reminder) {
+	init(reminder: Reminder) {
 		self.reminder = reminder
+		super.init()
 	}
 }
 
-extension ReminderDetailViewController {
+extension ReminderDetailViewDataSource: UITableViewDataSource {
 	static let reminderDetailCellIdentifier = "ReminderDetailCell"
 	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return ReminderRow.allCases.count
 	}
 	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: Self.reminderDetailCellIdentifier, for: indexPath)
 		let row = ReminderRow(rawValue: indexPath.row)
 		cell.textLabel?.text = row?.displayText(for: reminder)
