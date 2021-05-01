@@ -105,14 +105,14 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTitleCell" id="x5E-wp-gp7" customClass="EditTitleCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="68" width="414" height="19"/>
+                                <rect key="frame" x="0.0" y="68" width="414" height="19.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5E-wp-gp7" id="H7f-SX-kwq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TextField" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-hq-Wmf">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="19"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -129,7 +129,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditDateCell" rowHeight="216" id="Zti-FZ-g70" customClass="EditDateCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="87" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="87.5" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zti-FZ-g70" id="E0A-1e-DrG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
@@ -151,7 +151,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditNotesCell" rowHeight="216" id="fnz-6s-Tfu" customClass="EditNotesCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="303" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="303.5" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fnz-6s-Tfu" id="jd2-fc-Jcx">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>

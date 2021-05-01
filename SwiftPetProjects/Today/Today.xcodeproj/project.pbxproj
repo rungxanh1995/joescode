@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C85BD7B263D718000B25A9B /* ReminderDetailEditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C85BD7A263D718000B25A9B /* ReminderDetailEditDataSource.swift */; };
 		2CA8CBF3263CA1EA00E3104D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA8CBF2263CA1EA00E3104D /* AppDelegate.swift */; };
 		2CA8CBF5263CA1EA00E3104D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA8CBF4263CA1EA00E3104D /* SceneDelegate.swift */; };
 		2CA8CBF7263CA1EA00E3104D /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA8CBF6263CA1EA00E3104D /* ReminderListViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C85BD7A263D718000B25A9B /* ReminderDetailEditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailEditDataSource.swift; sourceTree = "<group>"; };
 		2CA8CBEF263CA1EA00E3104D /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA8CBF2263CA1EA00E3104D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CA8CBF4263CA1EA00E3104D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				2CA8CC0D263CCC8900E3104D /* ReminderListDataSource.swift */,
 				2CA8CC11263CCF9400E3104D /* ReminderDetailViewDataSource.swift */,
+				2C85BD7A263D718000B25A9B /* ReminderDetailEditDataSource.swift */,
 			);
 			path = "Data Sources";
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				2CA8CC17263CDA9500E3104D /* EditDateCell.swift in Sources */,
 				2CA8CC07263CA2C100E3104D /* Reminder.swift in Sources */,
 				2CA8CC0E263CCC8900E3104D /* ReminderListDataSource.swift in Sources */,
+				2C85BD7B263D718000B25A9B /* ReminderDetailEditDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
