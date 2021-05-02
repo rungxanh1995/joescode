@@ -1,6 +1,6 @@
 # Tic Tac Toe - SwiftUI 🐦
 
-Tic Tac Toe is a game built using Apple Inc.'s [SwiftUI](https://developer.apple.com/xcode/swiftui/) framework.
+Tic Tac Toe is a game built using Apple Inc.'s [SwiftUI](https://developer.apple.com/xcode/swiftui/) framework. User will play against the computer AI to either win, lose, or draw the game.
 
 The game supports every iOS or iPadOS device running version 13.0 or later.
 
