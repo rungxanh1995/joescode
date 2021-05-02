@@ -17,10 +17,10 @@ Clone [this GitHub repo](https://github.com/rungxanh2901/joescode.git), then nav
 
 ## Screenshots
 
-[1.png](screenshots/1.PNG)
-[2.png](screenshots/2.PNG)
-[win.png](screenshots/win.PNG)
-[lose.png](screenshots/lose.PNG)
+![1.png](screenshots/1.PNG)
+![2.png](screenshots/2.PNG)
+![win.png](screenshots/win.PNG)
+![lose.png](screenshots/lose.PNG)
 
 ## Acknowledgement
 Special thanks to iOS developer [Sean Allen](https://twitter.com/seanallen_dev) for the app ideas and tutorial.
