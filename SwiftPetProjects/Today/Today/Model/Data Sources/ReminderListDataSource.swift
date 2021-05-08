@@ -33,6 +33,13 @@ class ReminderListDataSource: NSObject {
 		return Reminder.testData.filter { filter.shouldInclude(date: $0.dueDate) }.sorted { $0.dueDate < $1.dueDate }
 	}
 	
+	var percentComplete: Double {
+		guard filteredReminders.count > 0 else { return 1 }
+		let numComplete: Double = filteredReminders.reduce(0) { $0 + ($1.isComplete
+			? 1 : 0) }
+		return numComplete / Double(filteredReminders.count)
+	}
+	
 	func update(_ reminder: Reminder, at row: Int) {
 		let index = self.index(for: row)
 		Reminder.testData[index] = reminder
