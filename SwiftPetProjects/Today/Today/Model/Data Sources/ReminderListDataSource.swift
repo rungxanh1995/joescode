@@ -8,6 +8,8 @@
 import UIKit
 
 class ReminderListDataSource: NSObject {
+	typealias ReminderCompletedAction = (Int) -> Void
+	typealias ReminderDeletedAction = () -> Void
 	
 	enum Filter: Int {
 		case today
@@ -38,6 +40,15 @@ class ReminderListDataSource: NSObject {
 		let numComplete: Double = filteredReminders.reduce(0) { $0 + ($1.isComplete
 			? 1 : 0) }
 		return numComplete / Double(filteredReminders.count)
+	}
+	
+	private var reminderCompletedAction: ReminderCompletedAction?
+	private var reminderDeletedAction: ReminderDeletedAction?
+	
+	init(reminderCompletedAction: @escaping ReminderCompletedAction, reminderDeletedAction: @escaping ReminderDeletedAction) {
+		self.reminderCompletedAction = reminderCompletedAction
+		self.reminderDeletedAction = reminderDeletedAction
+		super.init()
 	}
 	
 	func update(_ reminder: Reminder, at row: Int) {
@@ -85,6 +96,7 @@ extension ReminderListDataSource: UITableViewDataSource {
 			var modifiedReminder = currentReminder
 			modifiedReminder.isComplete.toggle()
 			self.update(modifiedReminder, at: indexPath.row)
+			self.reminderCompletedAction?(indexPath.row)
 			tableView.reloadRows(at: [indexPath], with: .none)
 		}
 		return cell
@@ -98,7 +110,7 @@ extension ReminderListDataSource: UITableViewDataSource {
 		} completion: { _ in
 			tableView.reloadData()
 		}
-
+		reminderDeletedAction?()
 	}
 }
 
