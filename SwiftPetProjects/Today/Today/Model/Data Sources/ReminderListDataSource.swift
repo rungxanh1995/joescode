@@ -11,6 +11,7 @@ import EventKit
 class ReminderListDataSource: NSObject {
 	typealias ReminderCompletedAction = (Int) -> Void
 	typealias ReminderDeletedAction = () -> Void
+	typealias RemindersChangedAction = () -> Void
 	
 	enum Filter: Int {
 		case today
@@ -48,11 +49,33 @@ class ReminderListDataSource: NSObject {
 	private var reminders: [Reminder] = []
 	private var reminderCompletedAction: ReminderCompletedAction?
 	private var reminderDeletedAction: ReminderDeletedAction?
+	private var remindersChangedAction: RemindersChangedAction?
 	
-	init(reminderCompletedAction: @escaping ReminderCompletedAction, reminderDeletedAction: @escaping ReminderDeletedAction) {
+	init(reminderCompletedAction: @escaping ReminderCompletedAction, reminderDeletedAction: @escaping ReminderDeletedAction, remindersChangedAction: @escaping RemindersChangedAction) {
 		self.reminderCompletedAction = reminderCompletedAction
 		self.reminderDeletedAction = reminderDeletedAction
+		self.remindersChangedAction = remindersChangedAction
 		super.init()
+		
+		requestAccess { authorized in
+			if authorized {
+				self.readAllReminders()
+				NotificationCenter.default.addObserver(self, selector: #selector(self.storeChanged(_:)), name: .EKEventStoreChanged, object: self.eventStore)
+			}
+		}
+	}
+	
+	deinit {
+		NotificationCenter.default.removeObserver(self, name: .EKEventStoreChanged, object: self.eventStore)
+	}
+	
+	@objc
+	func storeChanged(_ notification: NSNotification) {
+		requestAccess { authorized in
+			if authorized {
+				self.readAllReminders()
+			}
+		}
 	}
 	
 	func update(_ reminder: Reminder, at row: Int) {
@@ -190,6 +213,7 @@ extension ReminderListDataSource {
 										   isComplete: sourceReminder.isCompleted)
 				return newReminder
 			}
+			self.remindersChangedAction?()
 		}
 	}
 }
