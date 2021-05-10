@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6D920D2649F6B500A3F806 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D920C2649F6B500A3F806 /* Utils.swift */; };
 		2C85BD7B263D718000B25A9B /* ReminderDetailEditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C85BD7A263D718000B25A9B /* ReminderDetailEditDataSource.swift */; };
 		2CA8CBF3263CA1EA00E3104D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA8CBF2263CA1EA00E3104D /* AppDelegate.swift */; };
 		2CA8CBF5263CA1EA00E3104D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA8CBF4263CA1EA00E3104D /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C6D920C2649F6B500A3F806 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		2C85BD7A263D718000B25A9B /* ReminderDetailEditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailEditDataSource.swift; sourceTree = "<group>"; };
 		2CA8CBEF263CA1EA00E3104D /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA8CBF2263CA1EA00E3104D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				2CA8CC13263CD4BF00E3104D /* Controllers */,
 				2CA8CBFB263CA1EB00E3104D /* Assets.xcassets */,
 				2CA8CBFD263CA1EB00E3104D /* LaunchScreen.storyboard */,
+				2C6D920C2649F6B500A3F806 /* Utils.swift */,
 				2CA8CC00263CA1EB00E3104D /* Info.plist */,
 			);
 			path = Today;
@@ -201,6 +204,7 @@
 				2CA8CC15263CD9EE00E3104D /* EditTitleCell.swift in Sources */,
 				2CA8CBF3263CA1EA00E3104D /* AppDelegate.swift in Sources */,
 				2CA8CC0B263CB11300E3104D /* ReminderDetailViewController.swift in Sources */,
+				2C6D920D2649F6B500A3F806 /* Utils.swift in Sources */,
 				2CA8CC12263CCF9400E3104D /* ReminderDetailViewDataSource.swift in Sources */,
 				2CA8CBF5263CA1EA00E3104D /* SceneDelegate.swift in Sources */,
 				2CA8CC19263CDAD800E3104D /* EditNotesCell.swift in Sources */,

@@ -44,6 +44,7 @@ class ReminderListViewController: UITableViewController {
 		super.viewDidLoad()
 		reminderListDataSource = ReminderListDataSource(reminderCompletedAction: { reminderIndex in
 			DispatchQueue.main.async {
+				self.hapticOnCompleteReminders()
 				self.tableView.reloadRows(at: [IndexPath(row: reminderIndex, section: 0)], with: .automatic)
 				self.refreshProgressView()
 			}
@@ -70,10 +71,12 @@ class ReminderListViewController: UITableViewController {
 	}
 	
 	@IBAction func addButtonTriggered(_ sender: UIBarButtonItem) {
+		self.hapticOnUIElements()
 		addReminder()
 	}
 	
 	@IBAction func segmentControlChanged(_ sender: UISegmentedControl) {
+		self.hapticOnUIElements()
 		reminderListDataSource?.filter = filter
 		tableView.reloadData()
 		self.refreshProgressView()
