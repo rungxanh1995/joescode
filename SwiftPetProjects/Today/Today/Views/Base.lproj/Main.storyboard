@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,17 +25,17 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbx-7f-5od" userLabel="Percent Complete View">
                                             <rect key="frame" x="0.0" y="143" width="290" height="146"/>
-                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                            <color key="backgroundColor" name="LIST_ProgressCircleComplete"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="146" id="CdZ-wq-vUN"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brc-6M-MiF" userLabel="Percent Incomplete View">
                                             <rect key="frame" x="0.0" y="0.0" width="290" height="143"/>
-                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                            <color key="backgroundColor" name="LIST_ProgressCircleIncomplete"/>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="Gbx-7f-5od" firstAttribute="leading" secondItem="UDf-eU-DxK" secondAttribute="leading" id="HzR-2C-Xjl"/>
                                         <constraint firstItem="Gbx-7f-5od" firstAttribute="top" secondItem="brc-6M-MiF" secondAttribute="bottom" id="IFE-H8-gq8"/>
@@ -47,7 +48,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="UDf-eU-DxK" firstAttribute="width" secondItem="xzu-Ed-dXA" secondAttribute="width" multiplier="0.7" id="2wg-Gb-edS"/>
                                 <constraint firstItem="UDf-eU-DxK" firstAttribute="centerX" secondItem="xzu-Ed-dXA" secondAttribute="centerX" id="SP4-6O-RRo"/>
@@ -68,6 +69,7 @@
                                                 <constraint firstAttribute="width" constant="44" id="4hv-kx-mtz"/>
                                                 <constraint firstAttribute="width" secondItem="6Fo-WB-ufs" secondAttribute="height" multiplier="1:1" id="bX5-nI-l8J"/>
                                             </constraints>
+                                            <color key="tintColor" name="LIST_ReminderCompletedCircleTint"/>
                                             <state key="normal" backgroundImage="circle" catalog="system"/>
                                             <connections>
                                                 <action selector="doneButtonTriggered:" destination="N8W-5j-atv" eventType="touchUpInside" id="DMr-fR-Sjz"/>
@@ -98,6 +100,7 @@
                                         <constraint firstItem="01l-0I-YkB" firstAttribute="top" secondItem="aNo-BG-JZb" secondAttribute="bottom" constant="8" symbolic="YES" id="ygV-k3-CdJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="LIST_TableRowBackground"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="01l-0I-YkB" id="QHa-ee-tQa"/>
                                     <outlet property="doneButton" destination="6Fo-WB-ufs" id="vOr-pL-dYe"/>
@@ -153,6 +156,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" name="VIEW_Background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderDetailCell" textLabel="Z39-mj-W5m" style="IBUITableViewCellStyleDefault" id="6hl-xQ-AC6">
                                 <rect key="frame" x="0.0" y="49.5" width="414" height="43.5"/>
@@ -170,16 +174,17 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="tintColor" name="VIEW_IconTint"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTitleCell" id="x5E-wp-gp7" customClass="EditTitleCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93" width="414" height="19.5"/>
+                                <rect key="frame" x="0.0" y="93" width="414" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x5E-wp-gp7" id="H7f-SX-kwq">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TextField" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-hq-Wmf">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="19.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="19"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -196,7 +201,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditDateCell" rowHeight="216" id="Zti-FZ-g70" customClass="EditDateCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="112.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zti-FZ-g70" id="E0A-1e-DrG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
@@ -218,7 +223,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditNotesCell" rowHeight="216" id="fnz-6s-Tfu" customClass="EditNotesCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="328.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="328" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fnz-6s-Tfu" id="jd2-fc-Jcx">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
@@ -267,6 +272,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XCM-Dw-IXI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="NavigationItemTint"/>
+                        <color key="barTintColor" name="NavigationBackground"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PiJ-68-W65">
@@ -283,20 +290,35 @@
     </scenes>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <namedColor name="LIST_ProgressCircleComplete">
+            <color white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="LIST_ProgressCircleIncomplete">
+            <color white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="LIST_ReminderCompletedCircleTint">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.65299999713897705" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="LIST_TableRowBackground">
+            <color white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="NavigationBackground">
+            <color red="0.10999999195337296" green="0.10999999195337296" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="NavigationItemTint">
+            <color red="0.038999993354082108" green="0.51800000667572021" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VIEW_Background">
+            <color red="0.28200000524520874" green="0.28200000524520874" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VIEW_IconTint">
+            <color red="0.038999993354082108" green="0.51800000667572021" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
