@@ -33,7 +33,7 @@ class ReminderListDataSource: NSObject {
 	var filter: Filter = .today
 	
 	var filteredReminders: [Reminder] {
-		return Reminder.testData.filter { filter.shouldInclude(date: $0.dueDate) }.sorted { $0.dueDate < $1.dueDate }
+		return reminders.filter { filter.shouldInclude(date: $0.dueDate) }.sorted { $0.dueDate < $1.dueDate }
 	}
 	
 	var percentComplete: Double {
@@ -45,6 +45,7 @@ class ReminderListDataSource: NSObject {
 	
 	private let eventStore = EKEventStore()
 	
+	private var reminders: [Reminder] = []
 	private var reminderCompletedAction: ReminderCompletedAction?
 	private var reminderDeletedAction: ReminderDeletedAction?
 	
@@ -56,12 +57,12 @@ class ReminderListDataSource: NSObject {
 	
 	func update(_ reminder: Reminder, at row: Int) {
 		let index = self.index(for: row)
-		Reminder.testData[index] = reminder
+		reminders[index] = reminder
 	}
 	
 	func delete(at row: Int) {
 		let index = self.index(for: row)
-		Reminder.testData.remove(at: index)
+		reminders.remove(at: index)
 	}
 	
 	func reminder(at row: Int) -> Reminder {
@@ -69,13 +70,13 @@ class ReminderListDataSource: NSObject {
 	}
 	
 	func add(_ reminder: Reminder) -> Int? {
-		Reminder.testData.insert(reminder, at: 0)
+		reminders.insert(reminder, at: 0)
 		return filteredReminders.firstIndex(where: { $0.id == reminder.id })
 	}
 	
 	func index(for filteredIndex: Int) -> Int {
 		let filteredReminder = filteredReminders[filteredIndex]
-		guard let index = Reminder.testData.firstIndex(where: { $0.id == filteredReminder.id }) else {
+		guard let index = reminders.firstIndex(where: { $0.id == filteredReminder.id }) else {
 			fatalError("Couldn't retrieve index in source array")
 		}
 		return index
@@ -169,6 +170,26 @@ extension ReminderListDataSource {
 		}
 		eventStore.requestAccess(to: .reminder) { success, error in
 			completion(success)
+		}
+	}
+	
+	private func readAllReminders() {
+		guard isAvailable else { return }
+		let predicate = eventStore.predicateForReminders(in: nil)
+		eventStore.fetchReminders(matching: predicate) { ekReminders in
+			guard let ekReminders = ekReminders else {
+				self.reminders = []
+				return
+			}
+			self.reminders = ekReminders.compactMap { sourceReminder in
+				guard let dueDate = sourceReminder.alarms?.first?.absoluteDate else { return nil }
+				let newReminder = Reminder(id: sourceReminder.calendarItemIdentifier,
+										   title: sourceReminder.title,
+										   dueDate: dueDate,
+										   notes: sourceReminder.notes,
+										   isComplete: sourceReminder.isCompleted)
+				return newReminder
+			}
 		}
 	}
 }
