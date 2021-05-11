@@ -35,8 +35,22 @@ class ReminderListViewController: UITableViewController {
 			destination.configure(with: reminder, editAction: { reminder in
 				self.reminderListDataSource?.update(reminder, at: rowIndex, completion: { success in
 					if success {
-						self.tableView.reloadData()
-						self.refreshProgressView()
+						DispatchQueue.main.async {
+							self.tableView.reloadData()
+							self.refreshProgressView()
+						}
+					} else {
+						DispatchQueue.main.async {
+							let alert = UIAlertController(title: AlertContext.errorUpdatingRemindersAlert.title,
+														  message: AlertContext.errorUpdatingRemindersAlert.message,
+														  preferredStyle: .alert)
+							alert.addAction(UIAlertAction(title: AlertContext.errorUpdatingRemindersAlert.actionTitle,
+														  style: .default,
+														  handler: { _ in
+															self.dismiss(animated: true, completion: nil)
+														  }))
+							self.present(alert, animated: true, completion: nil)
+						}
 					}
 				})
 			})

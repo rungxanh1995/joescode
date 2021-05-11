@@ -20,3 +20,16 @@ extension ReminderListViewController {
 		generator.impactOccurred()
 	}
 }
+
+struct AlertItem: Identifiable {
+	let id = UUID()
+	var title: String
+	var message: String
+	var actionTitle: String
+}
+
+struct AlertContext {
+	static let errorUpdatingRemindersAlert = AlertItem(title: "Can't Update Reminders",
+													   message: "An error occured while attempting to update the reminder.",
+													   actionTitle: "OK")
+}
