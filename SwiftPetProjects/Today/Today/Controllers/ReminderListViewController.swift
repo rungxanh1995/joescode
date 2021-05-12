@@ -76,6 +76,7 @@ class ReminderListViewController: UITableViewController {
 			}
 		})
 		tableView.dataSource = reminderListDataSource
+		tableView.rowHeight = 99
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
