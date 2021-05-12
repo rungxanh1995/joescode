@@ -17,7 +17,7 @@ Today only syncs reminders with an attached alarm to keep you in the know of whe
 * UIFeedbackGenerator
 
 ## Screenshots
-![screenshot](screenshots/image.png)
+![image.png](screenshots/Image.png)
 
 ## Acknowledgement
 Today App is a code-along project under the tutorial from Apple Developer [here](https://developer.apple.com/tutorials/app-dev-training/getting-started-with-today).
